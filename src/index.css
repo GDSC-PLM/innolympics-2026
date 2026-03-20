@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Innolympics 2026 Brand Palette ── */
+  --color-brand-gold: #FFD65D;
+  /* primary yellow-gold */
+  --color-brand-amber: #DFAD57;
+  /* secondary amber     */
+  --color-brand-teal: #7EB4AC;
+  /* accent teal         */
+  --color-brand-cream: #FFF8DB;
+  /* background cream    */
+  --color-brand-sand: #D2C9A3;
+  /* neutral sand/beige  */
+  --color-brand-coral: #DA5B3C;
+  /* highlight coral-red */
+
+  /* ── Typography ── */
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+  }
+}

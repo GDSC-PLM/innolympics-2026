@@ -1,0 +1,13 @@
+/* App-level styles */
+
+/* Smooth scrolling for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove default body margin/padding */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1a1208;
+}
