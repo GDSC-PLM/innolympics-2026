@@ -59,7 +59,7 @@ export default function Home() {
       <div
         className="absolute inset-0"
         style={{
-          background: '#FFD65D',               /* ← Band 5 color */
+          background: '#C98A00',               /* ← Band 5 color (darker amber) */
           clipPath: 'polygon(-8% 115%, 52% 0%, 65% 0%)',
         }}
       />
@@ -77,7 +77,7 @@ export default function Home() {
       />
 
       {/* Illustration — starts below navbar (top-20), pillars reach bottom */}
-      <div className="absolute top-20 bottom-0 right-[4%] z-10 flex items-end justify-end pointer-events-none w-72 sm:w-80 md:w-[400px] lg:w-[500px] xl:w-[520px]">
+      <div className="absolute top-20 bottom-0 right-[4%] z-10 hidden items-end justify-end pointer-events-none md:flex md:w-100 lg:w-125 xl:w-130">
         <img
           src={heroIllus}
           alt="Innolympics 2026 mascots"
@@ -129,7 +129,7 @@ export default function Home() {
       </div>
 
       {/* Bottom fade into next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#1a0f00] to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-linear-to-t from-[#1a0f00] to-transparent pointer-events-none" />
     </section>
   )
 }

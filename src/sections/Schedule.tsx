@@ -1,3 +1,5 @@
+import orangeredShape from '../raw-assets/orangered-shape.png'
+
 const days = [
   {
     day: 'Day 1',
@@ -63,6 +65,12 @@ export default function Schedule() {
           background: 'linear-gradient(135deg, #7EB4AC44 0%, transparent 45%)',
         }}
       />
+        <img
+          src={orangeredShape}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-32 -left-40 hidden w-136 select-none opacity-[0.18] -scale-x-100 lg:block"
+        />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
 
@@ -96,27 +104,26 @@ export default function Schedule() {
               {/* Day header */}
               <div
                 className="px-6 py-5 flex items-baseline justify-between"
-                style={{ background: day.accentColor + '22' }}
+                style={{ background: day.accentColor }}
               >
                 <div className="flex items-baseline gap-3">
                   <span
-                    className="text-2xl font-bold"
-                    style={{ color: day.accentColor }}
+                    className="text-2xl font-bold text-[#1a0f00]"
                   >
                     {day.day}
                   </span>
-                  <span className="text-[#1a0f00]/40 text-sm">{day.date}</span>
+                  <span className="text-[#1a0f00]/75 text-sm">{day.date}</span>
                 </div>
                 <span
                   className="text-xs font-semibold px-3 py-1 rounded-full"
-                  style={{ background: day.accentColor + '33', color: day.accentColor }}
+                  style={{ background: 'rgba(255,248,219,0.88)', color: '#1a0f00' }}
                 >
                   {day.events.length} events
                 </span>
               </div>
 
               {/* Timeline */}
-              <div className="bg-white/60 divide-y divide-[#1a0f00]/[0.06]">
+              <div className="bg-white/60 divide-y divide-[#1a0f00]/6">
                 {day.events.map((event, i) => {
                   const meta = typeMeta[event.type]
                   return (
