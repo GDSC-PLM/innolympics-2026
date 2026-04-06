@@ -2,39 +2,47 @@ import orangeredShape from '../raw-assets/orangered-shape.png'
 
 const days = [
   {
-    day: 'Day 1',
-    date: 'April 25, 2026',
+    day: 'Community Workshop',
+    date: 'April 19, 2026 · 12:00 PM – 6:00 PM',
     accentColor: '#7EB4AC', // brand-teal
     events: [
-      { time: '7:00 AM',  title: 'Registration & Check-in',       type: 'logistics' },
-      { time: '8:30 AM',  title: 'Opening Ceremony',               type: 'program'   },
-      { time: '9:30 AM',  title: 'Keynote: Innovation in the PH',  type: 'talk'      },
-      { time: '10:30 AM', title: 'Hackathon Kickoff & Briefing',   type: 'program'   },
-      { time: '11:00 AM', title: 'Hacking Begins',                 type: 'hack'      },
-      { time: '12:30 PM', title: 'Lunch Break',                    type: 'logistics' },
-      { time: '1:30 PM',  title: 'Mentorship Rounds (Batch 1)',    type: 'program'   },
-      { time: '3:30 PM',  title: 'Workshop: Pitch Deck Mastery',   type: 'talk'      },
-      { time: '4:30 PM',  title: 'Mentorship Rounds (Batch 2)',    type: 'program'   },
-      { time: '6:00 PM',  title: 'Dinner & Networking Night',      type: 'logistics' },
-      { time: '8:00 PM',  title: 'Overnight Hacking',              type: 'hack'      },
+      { time: '12:00 PM – 1:00 PM', title: 'Ingress', type: 'logistics' },
+      { time: '1:00 PM – 1:20 PM', title: 'Opening & Welcome Remarks', type: 'program' },
+      { time: '1:20 PM – 2:05 PM', title: 'Speaker 1: Bridging the Divide (Learning & Upward Mobility)', type: 'talk' },
+      { time: '2:05 PM – 2:50 PM', title: 'Speaker 2: Systemic Wellness (Healthcare & Mental Health)', type: 'talk' },
+      { time: '2:50 PM – 3:10 PM', title: 'Afternoon Snacks & Break', type: 'logistics' },
+      { time: '3:10 PM – 3:55 PM', title: 'Speaker 3: Empowering the Citizen (Transparency & Economic Agency)', type: 'talk' },
+      { time: '3:55 PM – 5:00 PM', title: 'Panel Discussion & Open Q&A', type: 'program' },
+      { time: '5:00 PM – 5:10 PM', title: 'Awarding of Certificates', type: 'program' },
+      { time: '5:10 PM – 5:30 PM', title: 'Closing & Announcements', type: 'program' },
+      { time: '5:30 PM – 6:00 PM', title: 'Egress', type: 'logistics' },
     ],
   },
   {
-    day: 'Day 2',
-    date: 'April 26, 2026',
+    day: 'Technical Workshop',
+    date: 'April 20, 2026 · 8:30 AM – 5:00 PM',
     accentColor: '#DA5B3C', // brand-coral
     events: [
-      { time: '7:00 AM',  title: 'Breakfast & Free Hacking',       type: 'logistics' },
-      { time: '9:00 AM',  title: 'Final Submissions Deadline',      type: 'hack'      },
-      { time: '9:30 AM',  title: 'Judging Panel Deliberation',      type: 'program'   },
-      { time: '10:30 AM', title: 'Speaker Talk: Design Thinking',   type: 'talk'      },
-      { time: '11:30 AM', title: 'Guest Speaker: Google PH Lead',   type: 'talk'      },
-      { time: '12:30 PM', title: 'Lunch Break',                     type: 'logistics' },
-      { time: '1:30 PM',  title: 'Team Presentations (Round 1)',    type: 'program'   },
-      { time: '3:00 PM',  title: 'Team Presentations (Round 2)',    type: 'program'   },
-      { time: '4:30 PM',  title: 'Finalists Announced',             type: 'program'   },
-      { time: '5:00 PM',  title: 'Awarding Ceremony',               type: 'hack'      },
-      { time: '6:00 PM',  title: 'Closing & Group Photo',           type: 'logistics' },
+      { time: '8:30 AM – 9:00 AM', title: 'Ingress', type: 'logistics' },
+      { time: '9:00 AM – 9:15 AM', title: 'Opening Remarks & Workshop Overview', type: 'program' },
+      { time: '9:15 AM – 9:30 AM', title: 'Mini Icebreaker', type: 'program' },
+      { time: '9:30 AM – 10:30 AM', title: 'Speaker 1 Talk (AM): Hackathon Fundamentals', type: 'talk' },
+      { time: '10:30 AM – 10:40 AM', title: 'Q&A (Speaker 1)', type: 'program' },
+      { time: '10:40 AM – 10:45 AM', title: 'Certificate Awarding (Speaker 1)', type: 'program' },
+      { time: '10:45 AM – 11:45 AM', title: 'Speaker 2 Talk (AM): UI/UX & Product Thinking', type: 'talk' },
+      { time: '11:45 AM – 11:55 AM', title: 'Q&A (Speaker 2)', type: 'program' },
+      { time: '11:55 AM – 12:00 PM', title: 'Certificate Awarding (Speaker 2)', type: 'program' },
+      { time: '12:00 PM – 12:50 PM', title: 'Lunch Break', type: 'logistics' },
+      { time: '12:50 PM – 1:00 PM', title: 'Post-Lunch Energizer', type: 'program' },
+      { time: '1:00 PM – 2:00 PM', title: 'Speaker 3 Talk (PM): Google Technologies for Prototypes', type: 'talk' },
+      { time: '2:00 PM – 2:10 PM', title: 'Q&A (Speaker 3)', type: 'program' },
+      { time: '2:10 PM – 2:15 PM', title: 'Certificate Awarding (Speaker 3)', type: 'program' },
+      { time: '2:15 PM – 3:15 PM', title: 'Speaker 4 Talk (PM): Pitching for Impact', type: 'talk' },
+      { time: '3:15 PM – 3:25 PM', title: 'Q&A (Speaker 4)', type: 'program' },
+      { time: '3:25 PM – 3:30 PM', title: 'Certificate Awarding (Speaker 4)', type: 'program' },
+      { time: '3:30 PM – 4:15 PM', title: 'Hackathon Announcements & Early Topic Reveal', type: 'program' },
+      { time: '4:15 PM – 4:30 PM', title: 'Closing & Final Reminders', type: 'program' },
+      { time: '4:30 PM – 5:00 PM', title: 'Egress', type: 'logistics' },
     ],
   },
 ]
@@ -83,7 +91,7 @@ export default function Schedule() {
           <h2 className="text-4xl md:text-5xl font-bold text-[#1a0f00]">
             Event <span className="text-brand-coral">Schedule</span>
           </h2>
-          <p className="text-[#1a0f00]/50 mt-3 text-sm">April 25–26, 2026 · Venue To be Announced</p>
+          <p className="text-[#1a0f00]/50 mt-3 text-sm">April 19–20, 2026 · Community + Technical Workshops</p>
         </div>
 
         {/* Legend */}
@@ -99,11 +107,11 @@ export default function Schedule() {
         {/* Two-column day layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {days.map((day) => (
-            <div key={day.day} className="rounded-2xl overflow-hidden border border-[#1a0f00]/10 shadow-sm">
+            <div key={day.day} className="rounded-2xl overflow-hidden border border-[#1a0f00]/10 shadow-sm h-full flex flex-col">
 
               {/* Day header */}
               <div
-                className="px-6 py-5 flex items-baseline justify-between"
+                className="px-6 py-5"
                 style={{ background: day.accentColor }}
               >
                 <div className="flex items-baseline gap-3">
@@ -114,16 +122,10 @@ export default function Schedule() {
                   </span>
                   <span className="text-[#1a0f00]/75 text-sm">{day.date}</span>
                 </div>
-                <span
-                  className="text-xs font-semibold px-3 py-1 rounded-full"
-                  style={{ background: 'rgba(255,248,219,0.88)', color: '#1a0f00' }}
-                >
-                  {day.events.length} events
-                </span>
               </div>
 
               {/* Timeline */}
-              <div className="bg-white/60 divide-y divide-[#1a0f00]/6">
+              <div className="bg-white/60 divide-y divide-[#1a0f00]/6 lg:h-155 overflow-y-auto pb-4">
                 {day.events.map((event, i) => {
                   const meta = typeMeta[event.type]
                   return (
@@ -131,7 +133,7 @@ export default function Schedule() {
                       key={i}
                       className="flex items-start gap-4 px-6 py-4 hover:bg-brand-sand/20 transition-colors duration-150 group"
                     >
-                      <span className="text-xs text-[#1a0f00]/40 font-mono w-16 shrink-0 pt-0.5">
+                      <span className="text-xs text-[#1a0f00]/40 font-mono w-33 shrink-0 pt-0.5 leading-snug">
                         {event.time}
                       </span>
                       <span
