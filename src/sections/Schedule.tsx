@@ -94,16 +94,6 @@ export default function Schedule() {
           <p className="text-[#1a0f00]/50 mt-3 text-sm">April 19–20, 2026 · Community + Technical Workshops</p>
         </div>
 
-        {/* Legend */}
-        <div className="flex flex-wrap gap-5 mb-12">
-          {Object.entries(typeMeta).map(([key, { dot, label }]) => (
-            <span key={key} className="flex items-center gap-2 text-xs text-[#1a0f00]/50 font-medium">
-              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: dot }} />
-              {label}
-            </span>
-          ))}
-        </div>
-
         {/* Two-column day layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {days.map((day) => (
