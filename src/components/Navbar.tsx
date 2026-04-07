@@ -54,13 +54,6 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Register CTA */}
-        <div className="hidden md:block shrink-0">
-          <button className="px-5 py-2.5 text-sm font-semibold rounded-full bg-brand-coral text-white hover:bg-brand-coral/90 active:scale-95 transition-all duration-200 shadow-md shadow-brand-coral/30 cursor-pointer">
-            Register
-          </button>
-        </div>
-
         {/* Mobile hamburger */}
         <button
           className="md:hidden flex flex-col gap-1.5 p-2 text-brand-cream cursor-pointer"
@@ -85,9 +78,6 @@ export default function Navbar() {
               {link.label}
             </button>
           ))}
-          <button className="mt-2 px-5 py-2.5 text-sm font-semibold rounded-full bg-brand-coral text-white hover:bg-brand-coral/90 transition-all duration-200 cursor-pointer">
-            Register
-          </button>
         </div>
       )}
     </nav>

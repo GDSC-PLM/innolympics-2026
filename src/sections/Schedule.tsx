@@ -116,11 +116,11 @@ export default function Schedule() {
               >
                 <div className="flex items-baseline gap-3">
                   <span
-                    className="text-2xl font-bold text-[#1a0f00]"
+                    className="text-2xl font-bold text-brand-cream drop-shadow-[0_1px_1px_rgba(26,15,0,0.28)]"
                   >
                     {day.day}
                   </span>
-                  <span className="text-[#1a0f00]/75 text-sm">{day.date}</span>
+                  <span className="text-sm text-brand-cream/85">{day.date}</span>
                 </div>
               </div>
 
@@ -133,7 +133,7 @@ export default function Schedule() {
                       key={i}
                       className="flex items-start gap-4 px-6 py-4 hover:bg-brand-sand/20 transition-colors duration-150 group"
                     >
-                      <span className="text-xs text-[#1a0f00]/40 font-mono w-33 shrink-0 pt-0.5 leading-snug">
+                      <span className="text-xs text-[#1a0f00]/40 font-mono w-35 shrink-0 pt-0.5 leading-snug">
                         {event.time}
                       </span>
                       <span

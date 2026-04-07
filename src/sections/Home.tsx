@@ -113,15 +113,6 @@ export default function Home() {
             To Let Filipinos Dream Without Compromise
           </p>
 
-          {/* CTAs */}
-          <div className="flex flex-wrap items-center gap-4 mt-2">
-            <button className="px-7 py-3 rounded-full bg-brand-coral text-white font-semibold text-sm hover:bg-brand-coral/90 active:scale-95 transition-all duration-200 shadow-lg shadow-brand-coral/40 cursor-pointer">
-              Register Now
-            </button>
-            <button className="px-7 py-3 rounded-full border border-white/25 text-white font-semibold text-sm hover:bg-white/10 transition-all duration-200 cursor-pointer">
-              Learn More
-            </button>
-          </div>
         </div>
 
 
