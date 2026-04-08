@@ -32,7 +32,7 @@ const faqGroups: FAQGroup[] = [
         id: 'who-can-join',
         question: 'Who can join the event?',
         answer:
-          'The current structure is ready for student participants, campus organizations, mentors, and invited guests. Once eligibility rules are finalized, this entry can be updated without changing the component logic.',
+          'All interested group of developers who are passionate in elevating dreams for Filipinos',
       },
       {
         id: 'team-format',
