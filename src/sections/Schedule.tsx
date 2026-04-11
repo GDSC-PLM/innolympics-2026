@@ -94,16 +94,6 @@ export default function Schedule() {
           <p className="text-[#1a0f00]/50 mt-3 text-sm">April 19–20, 2026 · Community + Technical Workshops</p>
         </div>
 
-        {/* Legend */}
-        <div className="flex flex-wrap gap-5 mb-12">
-          {Object.entries(typeMeta).map(([key, { dot, label }]) => (
-            <span key={key} className="flex items-center gap-2 text-xs text-[#1a0f00]/50 font-medium">
-              <span className="w-2 h-2 rounded-full shrink-0" style={{ background: dot }} />
-              {label}
-            </span>
-          ))}
-        </div>
-
         {/* Two-column day layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {days.map((day) => (
@@ -116,11 +106,11 @@ export default function Schedule() {
               >
                 <div className="flex items-baseline gap-3">
                   <span
-                    className="text-2xl font-bold text-[#1a0f00]"
+                    className="text-2xl font-bold text-brand-cream drop-shadow-[0_1px_1px_rgba(26,15,0,0.28)]"
                   >
                     {day.day}
                   </span>
-                  <span className="text-[#1a0f00]/75 text-sm">{day.date}</span>
+                  <span className="text-sm text-brand-cream/85">{day.date}</span>
                 </div>
               </div>
 
@@ -133,7 +123,7 @@ export default function Schedule() {
                       key={i}
                       className="flex items-start gap-4 px-6 py-4 hover:bg-brand-sand/20 transition-colors duration-150 group"
                     >
-                      <span className="text-xs text-[#1a0f00]/40 font-mono w-33 shrink-0 pt-0.5 leading-snug">
+                      <span className="text-xs text-[#1a0f00]/40 font-mono w-35 shrink-0 pt-0.5 leading-snug">
                         {event.time}
                       </span>
                       <span
