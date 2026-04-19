@@ -1,255 +1,308 @@
 import { useState } from 'react'
 
-import blackbot from '../raw-assets/blackbot.png'
-import bluebot from '../raw-assets/bluebot.png'
 import blueShape from '../raw-assets/blue-shape.png'
-import greenbot from '../raw-assets/greenbot.png'
 import orangeredShape from '../raw-assets/orangered-shape.png'
 import pillar from '../raw-assets/pillar.png'
-import redbot from '../raw-assets/redbot.png'
-import whitebot from '../raw-assets/whitebot.png'
-import yellowbot from '../raw-assets/yellowbot.png'
+import gdgHau from '../raw-assets/partners/GDG-HAU.png'
+import gdgNu from '../raw-assets/partners/GDG-NU.png'
+import scaleLogo from '../raw-assets/partners/SCALE.jpeg'
+import kmcLogo from '../raw-assets/sponsors/KMC-Updated-Logo-2026-Black.png'
+import manusLogo from '../raw-assets/sponsors/manus.png'
+import omniLogo from '../raw-assets/sponsors/Omni_Black_WithTitle.png'
+import mentalCoffeeLogo from '../raw-assets/sponsors/The Mental Coffee - Logo.jpg'
+import whitecloakLogo from '../raw-assets/sponsors/WHITECLOAK LOGO.png'
+
+const homeRoomLogo = new URL('../raw-assets/sponsors/Copy of Logo (BLUE).JPG', import.meta.url)
+  .href
 
 type ArtworkEntry = {
-  src: string
   alt: string
+  background?: string
+  imageClassName?: string
+  name: string
+  src: string
+  summary: string
 }
 
 type Tier = {
-  id: string
-  label: string
+  accent: string
+  artwork: ArtworkEntry[]
   description: string
   footnote: string
-  accent: string
+  id: string
   ink: string
-  artwork: ArtworkEntry[]
+  label: string
 }
 
 type Showcase = {
-  id: 'partners' | 'sponsors'
-  label: string
-  eyebrow: string
-  title: string
-  description: string
   accent: string
+  description: string
+  eyebrow: string
+  id: 'partners' | 'sponsors'
   ink: string
+  label: string
   stats: string[]
-  preview: ArtworkEntry
-  previewCopy: string
   tiers: Tier[]
+  title: string
 }
 
-const artworkLibrary = {
-  blackbot: {
-    src: blackbot,
-    alt: 'Black colorbot placeholder artwork',
-  },
-  bluebot: {
-    src: bluebot,
-    alt: 'Blue colorbot placeholder artwork',
-  },
-  greenbot: {
-    src: greenbot,
-    alt: 'Green colorbot placeholder artwork',
-  },
-  redbot: {
-    src: redbot,
-    alt: 'Red colorbot placeholder artwork',
-  },
-  whitebot: {
-    src: whitebot,
-    alt: 'White colorbot placeholder artwork',
-  },
-  yellowbot: {
-    src: yellowbot,
-    alt: 'Yellow colorbot placeholder artwork',
-  },
-} satisfies Record<string, ArtworkEntry>
-
-function pickArtwork(...keys: Array<keyof typeof artworkLibrary>) {
-  return keys.map((key) => artworkLibrary[key])
+type SpotlightItem = ArtworkEntry & {
+  accent: string
+  tierDescription: string
+  tierFootnote: string
+  tierId: string
+  tierLabel: string
 }
 
 const showcases: Showcase[] = [
   {
     id: 'partners',
     label: 'Partners',
-    eyebrow: 'Alliance lanes for the event buildout',
-    title: 'Strategic partner tiers for schools, communities, and ecosystems',
+    eyebrow: 'Confirmed school and ecosystem collaborators',
+    title: 'Partner spotlights now give each organization its own featured moment',
     description:
-      'This view frames collaborators in distinct partnership lanes so academic support, community backing, and media reach can all live in one polished section.',
+      'The partner view focuses on one organization at a time so every logo, tier, and summary stays readable without squeezing the roster into dense columns.',
     accent: '#DA5B3C',
     ink: '#FFF8DB',
-    stats: ['4 partner tiers', 'reference-inspired columns', 'colorbot placeholders'],
-    preview: artworkLibrary.bluebot,
-    previewCopy:
-      'The active view now uses the colorbot renders from raw-assets as stand-ins, so we can keep the layout expressive while the real partner artwork is still pending.',
+    stats: ['3 featured partners', '2 partner lanes', 'auto-rotating spotlight'],
     tiers: [
       {
-        id: 'academic',
-        label: 'Academic',
-        description: 'University and campus-aligned collaborators who help ground the event in student communities.',
-        footnote: 'Institutional visibility',
+        id: 'campus-chapters',
+        label: 'Campus Chapters',
+        description:
+          'Google Developer Groups on Campus chapters helping widen student reach, technical community presence, and school-to-school collaboration.',
+        footnote: 'Academic partners',
         accent: '#DA5B3C',
         ink: '#FFF8DB',
-        artwork: pickArtwork('bluebot', 'whitebot', 'greenbot'),
+        artwork: [
+          {
+            src: gdgHau,
+            alt: 'GDG-HAU logo',
+            name: 'GDG-HAU',
+            summary:
+              'Google Developer Group on Campus - Holy Angel University, represented by Joaquin Galang, expands the campus builder network supporting the event.',
+            background: 'rgba(255,248,219,0.96)',
+          },
+          {
+            src: gdgNu,
+            alt: 'GDGoC NU Manila logo',
+            name: 'GDGoC - NU Manila',
+            summary:
+              'The National University Manila chapter, represented by Gwyenth Lim, adds another student-led developer community to the confirmed partner roster.',
+            background: 'rgba(255,255,255,0.98)',
+          },
+        ],
       },
       {
-        id: 'community',
-        label: 'Community',
-        description: 'Student groups, volunteer networks, and civic organizations that expand reach on the ground.',
-        footnote: 'Grassroots support',
-        accent: '#FFD65D',
-        ink: '#1A1208',
-        artwork: pickArtwork('yellowbot', 'redbot', 'whitebot'),
-      },
-      {
-        id: 'media',
-        label: 'Media',
-        description: 'Coverage, storytelling, and documentation partners that help the event travel beyond the venue.',
-        footnote: 'Reach and storytelling',
+        id: 'startup-ecosystem',
+        label: 'Startup Ecosystem',
+        description:
+          'Builder and entrepreneurship communities contributing founder-minded support, networks, and innovation energy around the event.',
+        footnote: 'Ecosystem partners',
         accent: '#7EB4AC',
         ink: '#1A1208',
-        artwork: pickArtwork('bluebot', 'redbot', 'yellowbot'),
-      },
-      {
-        id: 'ecosystem',
-        label: 'Ecosystem',
-        description: 'Builder communities, org allies, and innovation groups that strengthen the event network.',
-        footnote: 'Startup and dev links',
-        accent: '#DFAD57',
-        ink: '#1A1208',
-        artwork: pickArtwork('greenbot', 'whitebot', 'blackbot'),
+        artwork: [
+          {
+            src: scaleLogo,
+            alt: 'SCALE logo',
+            name: 'SCALE',
+            summary:
+              'Startup Creator and Accelerator for Lasallian Entrepreneurs brings DLSU-LSEED founder support and ecosystem reach through its student and faculty leadership team.',
+            background: 'rgba(255,255,255,0.96)',
+          },
+        ],
       },
     ],
   },
   {
     id: 'sponsors',
     label: 'Sponsors',
-    eyebrow: 'Support levels that can scale once the real roster lands',
-    title: 'Sponsor tiers with a cleaner hierarchy for funding visibility',
+    eyebrow: 'Confirmed backers mapped to their actual tier names',
+    title: 'Sponsor spotlights now rotate through the actual 2026 tier lineup',
     description:
-      'This companion view is structured around sponsor recognition, giving each level a clearer sense of prominence while still using the current placeholder artwork pool.',
+      'The sponsor view keeps the real tier hierarchy from the source files while giving each brand enough space for a clean logo presentation and readable summary.',
     accent: '#FFD65D',
     ink: '#1A1208',
-    stats: ['4 sponsor tiers', 'switchable layout', 'colorbot placeholders'],
-    preview: artworkLibrary.yellowbot,
-    previewCopy:
-      'Sponsor mode leans into the brighter mascots to keep the card feeling alive without crushing the copy into a tiny corner.',
+    stats: ['6 featured sponsors', '5 live tiers', 'real logos and descriptions'],
     tiers: [
       {
-        id: 'presenting',
-        label: 'Presenting',
-        description: 'Top-line backing with strongest exposure across event communications and on-site presentation.',
-        footnote: 'Headline visibility',
+        id: 'presented-by',
+        label: 'Presented By',
+        description:
+          'Headline sponsor lane carrying the Platinum Prism Partner tier from the sponsor brief.',
+        footnote: 'Platinum Prism Partner',
         accent: '#FFD65D',
         ink: '#1A1208',
-        artwork: pickArtwork('yellowbot', 'whitebot', 'bluebot'),
+        artwork: [
+          {
+            src: manusLogo,
+            alt: 'Manus logo',
+            name: 'Manus',
+            summary:
+              'Manus from Meta is a general AI agent that turns thoughts into actions across work and life while helping teams automate complex workflows and move faster.',
+            background: '#050505',
+          },
+          {
+            src: omniLogo,
+            alt: 'Omni Channel Solutions logo',
+            name: 'Omni Channel Solutions PH, Inc.',
+            summary:
+              'Omni Channel Solutions joins the Presented By lane with official company details and event coordination contact information already supplied in the sponsor brief.',
+            background: 'rgba(255,255,255,0.98)',
+          },
+        ],
       },
       {
-        id: 'gold',
-        label: 'Gold',
-        description: 'Major support tier for programs, activations, and key attendee touchpoints throughout the event.',
-        footnote: 'Program support',
+        id: 'co-presented-by',
+        label: 'Co-Presented By',
+        description:
+          'Radiant Red backing for wider event visibility and attendee-facing support throughout the program.',
+        footnote: 'Radiant Red Partner',
         accent: '#DA5B3C',
         ink: '#FFF8DB',
-        artwork: pickArtwork('redbot', 'yellowbot', 'whitebot'),
+        artwork: [
+          {
+            src: homeRoomLogo,
+            alt: 'HomeRoom Dapitan logo',
+            name: 'HomeRoom Dapitan',
+            summary:
+              'HomeRoom Dapitan is confirmed under the Co-Presented By lane as the sponsor listed in the Radiant Red Partner tier.',
+            background: 'rgba(255,255,255,0.96)',
+          },
+        ],
       },
       {
-        id: 'silver',
-        label: 'Silver',
-        description: 'Reliable operational support for booths, community moments, and participant-facing experiences.',
-        footnote: 'Booths and activations',
+        id: 'official-venue-partner',
+        label: 'Official Venue Partner',
+        description:
+          'Venue and workspace support helping host teams, guests, and the on-site event experience.',
+        footnote: 'Venue host support',
         accent: '#7EB4AC',
         ink: '#1A1208',
-        artwork: pickArtwork('bluebot', 'blackbot', 'whitebot'),
+        artwork: [
+          {
+            src: kmcLogo,
+            alt: 'KMC Solutions logo',
+            name: 'KMC Solutions',
+            summary:
+              'KMC Solutions builds offshore global teams and flexible workspaces across the Philippines and Colombia, and serves as the official venue partner for the event.',
+            background: 'rgba(255,255,255,0.98)',
+          },
+        ],
       },
       {
-        id: 'prize',
-        label: 'Prize',
-        description: 'Awards, perks, or special-track contributions that add excitement and value for competing teams.',
-        footnote: 'Perks and awards',
+        id: 'event-supporter',
+        label: 'Event Supporter',
+        description:
+          'Supplemental brand backing grouped under the Vibrant Yellow Partner lane in the sponsor list.',
+        footnote: 'Vibrant Yellow Partner',
         accent: '#DFAD57',
         ink: '#1A1208',
-        artwork: pickArtwork('greenbot', 'redbot', 'yellowbot'),
+        artwork: [
+          {
+            src: whitecloakLogo,
+            alt: 'White Cloak Technologies logo',
+            name: 'White Cloak Technologies',
+            summary:
+              'White Cloak Technologies is confirmed as an Event Supporter under the Vibrant Yellow Partner tier for InnOlympics 2026.',
+            background: 'rgba(255,255,255,0.98)',
+          },
+        ],
+      },
+      {
+        id: 'concessionaire',
+        label: 'Concessionaire',
+        description:
+          'On-site refreshments and wellness-focused drinks available for attendees during the event.',
+        footnote: 'Food and beverage support',
+        accent: '#7EB4AC',
+        ink: '#1A1208',
+        artwork: [
+          {
+            src: mentalCoffeeLogo,
+            alt: 'The Mental Coffee logo',
+            name: 'The Mental Coffee',
+            summary:
+              'The Mental Coffee is a premium wellness brand offering coffee and non-coffee drinks designed to support focus, memory, and sustained mental energy.',
+            background: '#050505',
+          },
+        ],
       },
     ],
   },
 ]
 
-type TierColumnProps = {
-  tier: Tier
+function wrapIndex(index: number, length: number) {
+  if (length === 0) {
+    return 0
+  }
+
+  return (index + length) % length
 }
 
-function TierColumn({ tier }: TierColumnProps) {
+type NavButtonProps = {
+  direction: 'previous' | 'next'
+  onClick: () => void
+}
+
+function NavButton({ direction, onClick }: NavButtonProps) {
+  const isPrevious = direction === 'previous'
+
   return (
-    <article className="group relative flex h-full flex-col pt-6">
-      <div
-        className="absolute inset-x-4 top-0 z-10 rounded-[22px] px-4 py-4 text-center shadow-[0_18px_40px_rgba(26,15,0,0.2)]"
-        style={{
-          background: `linear-gradient(135deg, ${tier.accent} 0%, ${tier.accent}dd 100%)`,
-          color: tier.ink,
-        }}
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={isPrevious ? 'Show previous spotlight' : 'Show next spotlight'}
+      className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.08] text-white shadow-[0_12px_30px_rgba(0,0,0,0.2)] transition hover:-translate-y-0.5 hover:bg-white/[0.14] cursor-pointer"
+    >
+      <svg
+        viewBox="0 0 24 24"
+        className={`h-5 w-5 ${isPrevious ? '' : 'rotate-180'}`}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       >
-        <span className="text-[0.68rem] font-bold uppercase tracking-[0.24em] opacity-75">
-          Tier
-        </span>
-        <h4 className="mt-1 text-[1.7rem] font-bold leading-none">{tier.label}</h4>
-      </div>
-
-      <div className="flex min-h-[33rem] flex-1 flex-col rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,248,219,0.12)_0%,rgba(255,255,255,0.04)_100%)] p-4 pt-24 shadow-[0_28px_70px_rgba(5,4,2,0.24)] backdrop-blur-sm transition duration-300 group-hover:-translate-y-1 group-hover:border-white/20">
-        <p className="text-center text-sm leading-relaxed text-brand-cream/70">
-          {tier.description}
-        </p>
-
-        <div className="mt-5 flex flex-1 flex-col gap-4">
-          {tier.artwork.map((image, index) => (
-            <div
-              key={`${tier.id}-${image.alt}-${index}`}
-              className="flex h-[6.75rem] items-center justify-center rounded-[22px] border border-white/12 bg-transparent px-6 py-5"
-              style={{
-                background:
-                  'radial-gradient(circle at center, rgba(255,248,219,0.12) 0%, rgba(255,248,219,0.02) 55%, transparent 100%)',
-              }}
-            >
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="h-full w-full object-contain drop-shadow-[0_18px_24px_rgba(0,0,0,0.22)]"
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-5 border-t border-white/10 pt-4">
-          <div className="flex items-center justify-center gap-2">
-            {[0, 1, 2].map((dotIndex) => (
-              <span
-                key={`${tier.id}-dot-${dotIndex}`}
-                className="h-2.5 rounded-full border"
-                style={{
-                  width: dotIndex === 1 ? '1.75rem' : '0.6rem',
-                  backgroundColor: dotIndex === 1 ? tier.accent : 'transparent',
-                  borderColor: `${tier.accent}aa`,
-                }}
-              />
-            ))}
-          </div>
-
-          <p className="mt-3 text-center text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-brand-cream/45">
-            {tier.footnote}
-          </p>
-        </div>
-      </div>
-    </article>
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+    </button>
   )
 }
 
 export default function Partners() {
   const [activeShowcaseId, setActiveShowcaseId] = useState<Showcase['id']>('partners')
+  const [spotlightIndex, setSpotlightIndex] = useState(0)
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right')
 
   const activeShowcase =
     showcases.find((showcase) => showcase.id === activeShowcaseId) ?? showcases[0]
+  const spotlightItems: SpotlightItem[] = activeShowcase.tiers.flatMap((tier) =>
+    tier.artwork.map((entry) => ({
+      ...entry,
+      accent: tier.accent,
+      tierDescription: tier.description,
+      tierFootnote: tier.footnote,
+      tierId: tier.id,
+      tierLabel: tier.label,
+    })),
+  )
+  const normalizedSpotlightIndex = wrapIndex(spotlightIndex, spotlightItems.length)
+  const activeSpotlight = spotlightItems[normalizedSpotlightIndex] ?? spotlightItems[0]
+
+  if (!activeSpotlight) {
+    return null
+  }
+
+  const goToPrevious = () => {
+    setSlideDirection('left')
+    setSpotlightIndex((current) => wrapIndex(current - 1, spotlightItems.length))
+  }
+
+  const goToNext = () => {
+    setSlideDirection('right')
+    setSpotlightIndex((current) => wrapIndex(current + 1, spotlightItems.length))
+  }
 
   return (
     <section
@@ -300,162 +353,224 @@ export default function Partners() {
             }}
           />
 
-          <div className="relative grid gap-8 xl:grid-cols-[minmax(0,1fr)_24rem] xl:items-start">
+          <div className="relative flex flex-col gap-8">
             <div>
-              <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-brand-gold">
-                <span className="block h-px w-10 bg-brand-gold" />
-                Partnership Wall
-              </span>
+              <div>
+                <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-brand-gold">
+                  <span className="block h-px w-10 bg-brand-gold" />
+                  Partnership Wall
+                </span>
 
-              <h2 className="mt-5 max-w-4xl text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-                Partners and Sponsors,
-                <span className="block text-brand-gold">tiered and switchable in one section</span>
-              </h2>
+                <h2 className="mt-5 max-w-4xl text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+                  Partners and Sponsors
+                </h2>
+              </div>
+            </div>
 
-              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-white/65 md:text-base">
-                Built around your reference layout, this section separates partner
-                lanes from sponsor tiers while keeping the same InnOlympics palette,
-                lighting, and soft-glass card treatment used across the page.
-              </p>
+            <div
+              role="tablist"
+              aria-label="Toggle partnership showcase"
+              className="flex flex-wrap gap-3"
+            >
+              {showcases.map((showcase) => {
+                const isActive = showcase.id === activeShowcase.id
 
-              <div
-                role="tablist"
-                aria-label="Toggle partnership showcase"
-                className="mt-6 flex flex-wrap gap-3"
-              >
-                {showcases.map((showcase) => {
-                  const isActive = showcase.id === activeShowcase.id
+                return (
+                  <button
+                    key={showcase.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-pressed={isActive}
+                    onClick={() => {
+                      setActiveShowcaseId(showcase.id)
+                      setSlideDirection('right')
+                      setSpotlightIndex(0)
+                    }}
+                    className="cursor-pointer rounded-full border px-5 py-3 text-sm font-semibold transition duration-200 hover:-translate-y-0.5"
+                    style={{
+                      backgroundColor: isActive ? showcase.accent : 'rgba(255,255,255,0.04)',
+                      borderColor: isActive ? showcase.accent : 'rgba(255,255,255,0.12)',
+                      color: isActive ? showcase.ink : '#FFF8DB',
+                      boxShadow: isActive ? `0 14px 32px ${showcase.accent}33` : 'none',
+                    }}
+                  >
+                    {showcase.label}
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className="rounded-[34px] border border-white/8 bg-[rgba(255,248,219,0.06)] p-5 shadow-[0_28px_80px_rgba(0,0,0,0.2)] md:p-8">
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <div className="max-w-3xl">
+                  <span
+                    className="inline-flex items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.28em]"
+                    style={{ color: activeShowcase.accent }}
+                  >
+                    <span
+                      className="block h-px w-10"
+                      style={{ backgroundColor: activeShowcase.accent }}
+                    />
+                    {activeShowcase.eyebrow}
+                  </span>
+
+                  <h3 className="mt-4 text-3xl font-bold leading-tight text-white md:text-4xl">
+                    {activeShowcase.title}
+                  </h3>
+                </div>
+
+                <div className="flex items-center gap-3 self-start lg:self-auto">
+                  <NavButton direction="previous" onClick={goToPrevious} />
+                  <NavButton direction="next" onClick={goToNext} />
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                {activeShowcase.tiers.map((tier) => {
+                  const isCurrentTier = tier.id === activeSpotlight.tierId
 
                   return (
-                    <button
-                      key={showcase.id}
-                      type="button"
-                      role="tab"
-                      aria-selected={isActive}
-                      aria-pressed={isActive}
-                      onClick={() => setActiveShowcaseId(showcase.id)}
-                      className="cursor-pointer rounded-full border px-5 py-3 text-sm font-semibold transition duration-200 hover:-translate-y-0.5"
+                    <span
+                      key={`${activeShowcase.id}-${tier.id}`}
+                      className="rounded-full border px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em]"
                       style={{
-                        backgroundColor: isActive ? showcase.accent : 'rgba(255,255,255,0.04)',
-                        borderColor: isActive ? showcase.accent : 'rgba(255,255,255,0.12)',
-                        color: isActive ? showcase.ink : '#FFF8DB',
-                        boxShadow: isActive ? `0 14px 32px ${showcase.accent}33` : 'none',
+                        backgroundColor: isCurrentTier ? `${tier.accent}24` : 'rgba(255,255,255,0.04)',
+                        borderColor: isCurrentTier ? `${tier.accent}99` : 'rgba(255,255,255,0.12)',
+                        color: isCurrentTier ? tier.accent : 'rgba(255,248,219,0.72)',
                       }}
                     >
-                      {showcase.label}
-                    </button>
+                      {tier.label}
+                    </span>
                   )
                 })}
               </div>
 
-              <div className="mt-6 flex flex-wrap gap-3">
-                {activeShowcase.stats.map((stat) => (
-                  <span
-                    key={`${activeShowcase.id}-${stat}`}
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white/62"
-                  >
-                    {stat}
+              <div
+                key={`${activeShowcase.id}-${activeSpotlight.name}-${normalizedSpotlightIndex}`}
+                className="mt-8 grid gap-8 xl:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]"
+                style={{
+                  animation:
+                    slideDirection === 'right'
+                      ? 'spotlightInFromRight 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards'
+                      : 'spotlightInFromLeft 0.7s cubic-bezier(0.25,0.46,0.45,0.94) forwards',
+                }}
+              >
+                <style>{`
+                  @keyframes spotlightInFromRight {
+                    from {
+                      transform: translateX(6%);
+                      opacity: 0;
+                    }
+                    to {
+                      transform: translateX(0);
+                      opacity: 1;
+                    }
+                  }
+                  @keyframes spotlightInFromLeft {
+                    from {
+                      transform: translateX(-6%);
+                      opacity: 0;
+                    }
+                    to {
+                      transform: translateX(0);
+                      opacity: 1;
+                    }
+                  }
+                `}</style>
+
+                <div className="h-full min-h-[26rem] max-h-[26rem] rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,248,219,0.1)_0%,rgba(255,255,255,0.04)_100%)] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.16)] sm:min-h-[30rem] sm:max-h-[30rem] xl:min-h-[32rem] xl:max-h-[32rem]">
+                  <span className="rounded-full border border-white/12 bg-white/[0.05] px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/62">
+                    Currently Highlighted
                   </span>
-                ))}
-              </div>
-            </div>
 
-            <aside className="relative min-h-[20rem] overflow-hidden rounded-[30px] border border-white/10 bg-[linear-gradient(135deg,rgba(218,91,60,0.2)_0%,rgba(255,214,93,0.12)_48%,rgba(126,180,172,0.18)_100%)] p-6 sm:p-7">
-              <div className="flex h-full flex-col gap-5">
-                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                  <div className="min-w-0">
-                    <span className="inline-flex rounded-full border border-white/15 bg-black/15 px-3 py-1.5 text-[0.68rem] font-bold uppercase tracking-[0.22em] text-brand-cream/72">
-                      Active View
-                    </span>
-
-                    <h3 className="mt-4 text-3xl font-bold leading-tight text-white">
-                      {activeShowcase.label}
-                    </h3>
-
-                    <p className="mt-3 text-sm leading-relaxed text-white/70 sm:max-w-[12.5rem]">
-                      {activeShowcase.tiers.length} ready-made tiers with colorbot
-                      artwork placeholders from <code>src/raw-assets</code>.
-                    </p>
-                  </div>
-
-                  <div className="flex h-32 w-28 shrink-0 items-end justify-center self-start rounded-[24px] border border-white/10 bg-black/10">
+                  <div
+                    className="mt-5 flex h-[18rem] items-center justify-center rounded-[24px] border border-white/12 p-6 sm:h-[22rem] sm:p-8 xl:h-[24rem]"
+                    style={{
+                      background:
+                        activeSpotlight.background ??
+                        'radial-gradient(circle at center, rgba(255,248,219,0.12) 0%, rgba(255,248,219,0.03) 58%, transparent 100%)',
+                    }}
+                  >
                     <img
-                      src={activeShowcase.preview.src}
-                      alt={activeShowcase.preview.alt}
-                      className="h-28 w-auto object-contain drop-shadow-[0_18px_30px_rgba(0,0,0,0.3)]"
+                      src={activeSpotlight.src}
+                      alt={activeSpotlight.alt}
+                      className={
+                        activeSpotlight.imageClassName ??
+                        'max-h-[16rem] w-full object-contain sm:max-h-[20rem]'
+                      }
                     />
                   </div>
                 </div>
 
-                <div className="rounded-[24px] border border-white/12 bg-black/12 p-4">
-                  <p className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-white/45">
-                    Placeholder Treatment
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-white/72">
-                    {activeShowcase.previewCopy}
-                  </p>
+                <div className="flex h-full min-h-[26rem] max-h-[26rem] flex-col gap-5 rounded-[30px] border border-white/10 bg-black/15 p-6 md:p-8 sm:min-h-[30rem] sm:max-h-[30rem] xl:min-h-[32rem] xl:max-h-[32rem] overflow-hidden">
+                  <div className="flex flex-wrap gap-2">
+                    <span
+                      className="rounded-full px-4 py-2 text-[0.72rem] font-bold uppercase tracking-[0.18em]"
+                      style={{
+                        backgroundColor: `${activeSpotlight.accent}22`,
+                        border: `1px solid ${activeSpotlight.accent}55`,
+                        color: activeSpotlight.accent,
+                      }}
+                    >
+                      {activeSpotlight.tierLabel}
+                    </span>
+                    <span className="rounded-full border border-white/12 bg-white/[0.05] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white/58">
+                      {activeSpotlight.tierFootnote}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h4 className="text-3xl font-bold leading-tight text-white sm:text-[2.3rem]">
+                      {activeSpotlight.name}
+                    </h4>
+                    <p className="mt-3 text-sm leading-relaxed text-white/68 md:text-base min-h-[4.5rem]">
+                      {activeSpotlight.tierDescription}
+                    </p>
+                  </div>
+
+                  <div className="flex-1 rounded-[24px] border border-white/10 bg-white/[0.04] p-5 overflow-y-auto">
+                    <span className="text-[0.72rem] font-bold uppercase tracking-[0.2em] text-brand-gold">
+                      About This Organization
+                    </span>
+                    <p className="mt-4 text-sm leading-relaxed text-white/82 md:text-base">
+                      {activeSpotlight.summary}
+                    </p>
+                  </div>
+
+                  <div className="mt-auto flex flex-wrap items-center justify-between gap-4">
+                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white/60">
+                      {normalizedSpotlightIndex + 1} of {spotlightItems.length}
+                    </span>
+                  </div>
                 </div>
-
-                <div className="mt-auto flex flex-wrap gap-2">
-                  <span className="rounded-full border border-white/12 bg-white/[0.05] px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/72">
-                    Layout fits confirmed data later
-                  </span>
-                  <span className="rounded-full border border-white/12 bg-white/[0.05] px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/72">
-                    Artwork can be swapped quickly
-                  </span>
-                </div>
-              </div>
-            </aside>
-          </div>
-
-          <div className="relative mt-10 overflow-hidden rounded-[34px] border border-white/8 bg-[rgba(255,248,219,0.06)] px-5 py-6 md:px-8 md:py-8">
-            <div
-              className="pointer-events-none absolute inset-0"
-              style={{
-                background:
-                  'radial-gradient(circle at top left, rgba(255,214,93,0.14), transparent 32%), radial-gradient(circle at bottom right, rgba(126,180,172,0.12), transparent 40%)',
-              }}
-            />
-
-            <div className="relative flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-3xl">
-                <span
-                  className="inline-flex items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.28em]"
-                  style={{ color: activeShowcase.accent }}
-                >
-                  <span
-                    className="block h-px w-10"
-                    style={{ backgroundColor: activeShowcase.accent }}
-                  />
-                  {activeShowcase.eyebrow}
-                </span>
-
-                <h3 className="mt-4 text-3xl font-bold leading-tight text-white md:text-4xl">
-                  {activeShowcase.title}
-                </h3>
-
-                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/65 md:text-base">
-                  {activeShowcase.description}
-                </p>
               </div>
 
-              <div className="rounded-full border border-white/10 bg-black/15 px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white/60">
-                {activeShowcase.tiers.length} tiers in this view
+              <div className="mt-8 flex flex-wrap gap-2.5">
+                {spotlightItems.map((item, index) => {
+                  const isActive = index === normalizedSpotlightIndex
+
+                  return (
+                    <button
+                      key={`${activeShowcase.id}-${item.tierId}-${item.name}`}
+                      type="button"
+                      onClick={() => {
+                        setSlideDirection(index > normalizedSpotlightIndex ? 'right' : 'left')
+                        setSpotlightIndex(index)
+                      }}
+                      className="cursor-pointer rounded-full border px-4 py-2 text-sm font-semibold transition duration-200"
+                      style={{
+                        backgroundColor: isActive ? `${item.accent}24` : 'rgba(255,255,255,0.04)',
+                        borderColor: isActive ? `${item.accent}99` : 'rgba(255,255,255,0.12)',
+                        color: isActive ? item.accent : '#FFF8DB',
+                        boxShadow: isActive ? `0 12px 28px ${item.accent}22` : 'none',
+                      }}
+                    >
+                      {item.name}
+                    </button>
+                  )
+                })}
               </div>
-            </div>
-
-            <div className="relative mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-              {activeShowcase.tiers.map((tier) => (
-                <TierColumn key={`${activeShowcase.id}-${tier.id}`} tier={tier} />
-              ))}
-            </div>
-
-            <div className="mt-2 rounded-[24px] border border-white/10 bg-black/15 px-4 py-4 text-sm leading-relaxed text-brand-cream/65 md:px-5">
-              The artwork in this section currently comes from{' '}
-              <code className="font-semibold text-brand-cream/80">src/raw-assets</code>{' '}
-              using the colorbot renders as temporary stand-ins. When the confirmed
-              partner and sponsor roster arrives, we can swap the content without
-              redesigning the section.
             </div>
           </div>
         </div>
