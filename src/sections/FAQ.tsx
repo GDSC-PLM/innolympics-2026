@@ -27,7 +27,7 @@ const faqGroups: FAQGroup[] = [
         id: 'what-is-innolympics',
         question: 'What is InnOlympics 2026?',
         answer:
-          'InnOlympics 2026 is a 2-day hackathon where teams of four build practical solutions that make it easier for Filipinos to dream without compromise.',
+          'InnOlympics 2026 is a 2-day, 1-night hackathon where teams of four build practical solutions that make it easier for Filipinos to dream without compromise.',
       },
       {
         id: 'theme-this-year',
@@ -111,7 +111,7 @@ export default function FAQ() {
         src={orangeredShape}
         alt=""
         aria-hidden="true"
-        className="pointer-events-none absolute left-28 top-1/2 z-0 hidden w-[18rem] -translate-y-1/2 opacity-25 md:block md:w-[24rem] lg:w-[30rem]"
+        className="pointer-events-none absolute bottom-0 left-0 top-0 z-0 hidden h-full w-[12rem] object-cover object-left opacity-25 md:block md:w-[16rem] lg:w-[20rem] xl:w-[24rem]"
       />
 
       {/* subtle circle designs in the FAQ section */}
@@ -144,7 +144,7 @@ export default function FAQ() {
         </div>
         
         {/* FAQs container */}
-        <div className="relative overflow-hidden rounded-[36px] border border-brand-teal/70 bg-white/70 px-5 py-6 shadow-[0_28px_90px_rgba(26,15,0,0.12)] backdrop-blur-md sm:px-6 md:px-8 md:py-8 lg:px-10 lg:py-10">
+        <div className="relative overflow-hidden rounded-[36px] border border-brand-teal/70 bg-white/40 px-5 py-6 shadow-[0_28px_90px_rgba(26,15,0,0.12)] backdrop-blur-[2px] sm:px-6 md:px-8 md:py-8 lg:px-10 lg:py-10">
           <div
             className="pointer-events-none absolute inset-0"
             style={{
