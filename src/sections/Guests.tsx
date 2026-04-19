@@ -1,8 +1,5 @@
 import { useState } from 'react'
 
-import sample1 from '../guest-pics/sample-1.jpg'
-import sample2 from '../guest-pics/sample-2.jpg'
-import sample3 from '../guest-pics/sample-3.jpg'
 import orangeredShape from '../raw-assets/orangered-shape.png'
 import pillar from '../raw-assets/pillar-2.png'
 
@@ -12,7 +9,9 @@ type GuestProfile = {
   company: string
   blurb: string
   tags: string[]
-  image: string
+  topic?: string
+  image?: string
+  placeholderLabel?: string
 }
 
 type GuestGroup = {
@@ -25,158 +24,225 @@ type GuestGroup = {
   guests: GuestProfile[]
 }
 
+const dio = new URL('../raw-assets/speakers/dio.png', import.meta.url).href
+const dumlao = new URL('../raw-assets/speakers/dumlao.png', import.meta.url).href
+const francisco = new URL('../raw-assets/speakers/francisco.jpg', import.meta.url).href
+const justiniane = new URL('../raw-assets/speakers/justiniane. [Photo]', import.meta.url).href
+const bumanlag = new URL('../raw-assets/mentors/bumanlag.jpg', import.meta.url).href
+const himoldang = new URL('../raw-assets/mentors/himoldang.jpg', import.meta.url).href
+const hulleza = new URL('../raw-assets/mentors/hulleza.jpg', import.meta.url).href
+const madero = new URL('../raw-assets/mentors/madero.png', import.meta.url).href
+const tolentino = new URL('../raw-assets/mentors/tolentino.png', import.meta.url).href
+const williams = new URL('../raw-assets/mentors/williams.jpeg', import.meta.url).href
+
+const speakerGuests: GuestProfile[] = [
+  {
+    name: 'Joshua Bumanlag',
+    role: 'Foundations of Innovation Speaker',
+    company: 'iOS Engineer, ING Hubs Philippines',
+    topic: 'Foundations of Innovation',
+    blurb:
+      'Joshua Bumanlag is an iOS Engineer at ING Hubs Philippines and a former Google Developer Student Clubs Lead and Notion Campus Leader. He has mentored student developer teams in building strong cross-platform apps and brings practical insight on strategy, execution, and team dynamics.',
+    tags: ['Strategy', 'Team dynamics', 'Mobile development'],
+    image: bumanlag,
+  },
+  {
+    name: 'Ryem Jian Dumlao',
+    role: 'Design for Impact Speaker',
+    company: 'UX Manager, Virtual Studios PH',
+    topic: 'Design for Impact',
+    blurb:
+      'Ryem Jian Dumlao is a User Experience Manager at Virtual Studios PH who leads cross-functional teams in building user-centered digital products. Her work spans UX research, product strategy, and design systems, and she actively shares insights with design and developer communities.',
+    tags: ['UI/UX', 'Rapid prototyping', 'Design systems'],
+    image: dumlao,
+  },
+  {
+    name: 'Louis Francisco',
+    role: 'Accelerated Development Speaker',
+    company: 'Senior Dev Fresh Grad, RCBC',
+    topic: 'Accelerated Development',
+    blurb:
+      'Louis Francisco builds apps across fintech, proptech, e-commerce, and digital media. A former hackathon winner from PLM, he enjoys mentoring builders and helping teams turn strong ideas into polished, working products.',
+    tags: ['AI builds', 'Flutter', 'Rapid execution'],
+    image: francisco,
+  },
+  {
+    name: 'Enrica Dio',
+    role: 'Pitch Crafting Speaker',
+    company: 'Technology Strategist and Startup Co-founder',
+    topic: 'Pitch Crafting',
+    blurb:
+      'Enrica Dio is a technology strategist and startup co-founder whose work spans software development, business strategy, and innovation communities. She has led AWS Cloud Club initiatives, contributed cybersecurity research, and regularly mentors students on shaping viable products and sharper pitches.',
+    tags: ['Pitching', 'Startup strategy', 'Innovation'],
+    image: dio,
+  },
+  {
+    name: 'Drandreb Justiniane',
+    role: 'Bridging the Divide Speaker',
+    company: 'Department of Education',
+    topic: 'Bridging the Divide',
+    blurb:
+      'Drandreb Justiniane is a registered psychometrician and magna cum laude psychology graduate whose work centers on mental health, education, and human development. Through public service, behavioral intervention work, and community speaking, he champions resilience, inclusive growth, and access to opportunity.',
+    tags: ['Education access', 'Mental health', 'Inclusive growth'],
+    image: justiniane,
+  },
+  {
+    name: 'Jose Mari A. Hulleza',
+    role: 'Systemic Wellness Speaker',
+    company: 'Registered Psychologist and Faculty Member',
+    topic: 'Systemic Wellness',
+    blurb:
+      'Jose Mari A. Hulleza is a registered psychologist and psychometrician who teaches across multiple institutions and leads mental health advocacy in communities and workplaces. His work focuses on mental health literacy, inclusive care, and making well-being support more accessible to Filipinos.',
+    tags: ['Wellness', 'Mental health literacy', 'Community care'],
+    image: hulleza,
+  },
+]
+
+const mentorGuests: GuestProfile[] = [
+  {
+    name: 'Drandreb Justiniane',
+    role: 'Education and Opportunity Access Mentor',
+    company: 'Department of Education',
+    topic: 'Education & Opportunity Access',
+    blurb:
+      'Drandreb Justiniane supports conversations on mental health, education, and human development through public service and community-based practice. His mentoring centers on psychosocial well-being, resilience, and creating more inclusive pathways to opportunity.',
+    tags: ['Education', 'Resilience', 'Inclusive growth'],
+    image: justiniane,
+  },
+  {
+    name: 'Tedvil Tolentino',
+    role: 'Education and Opportunity Access Mentor',
+    company: 'Business Development Specialist, Quipper',
+    topic: 'Education & Opportunity Access',
+    blurb:
+      'Tedvil Tolentino is a business development specialist with experience in B2B technology environments and strategic partnerships. With roots in education and innovation, he enjoys mentoring young builders and supporting projects that expand learning and opportunity through tech.',
+    tags: ['Partnerships', 'Edtech', 'Digital growth'],
+    image: tolentino,
+  },
+  {
+    name: 'Vanessa Williams',
+    role: 'Education and Opportunity Access Mentor',
+    company: 'Mental Health and Education Professional',
+    topic: 'Education & Opportunity Access',
+    blurb:
+      'Vanessa Williams is a mental health and education professional licensed in psychometrics and teaching. Her experience spans behavioral therapy, psychological assessment, student case management, and neurodiversity-affirming support across clinical and academic settings.',
+    tags: ['Assessment', 'Student support', 'Behavioral therapy'],
+    image: williams,
+  },
+  {
+    name: 'Danielle Madero',
+    role: 'Health and Well-being Access Mentor',
+    company: 'Instructor, Pangasinan State University',
+    topic: 'Health & Well-being Access',
+    blurb:
+      'Danielle Madero is a registered psychologist and psychometrician with experience in education, counseling, human resources, and psychological services. She teaches at Pangasinan State University and is committed to creating supportive environments that help people grow and thrive.',
+    tags: ['Counseling', 'Psychological services', 'Well-being'],
+    image: madero,
+  },
+  {
+    name: 'Jose Mari A. Hulleza',
+    role: 'Health and Well-being Access Mentor',
+    company: 'Registered Psychologist and Faculty Member',
+    topic: 'Health & Well-being Access',
+    blurb:
+      'Jose Mari A. Hulleza leads mental health trainings for institutions and organizations while teaching in higher education. He advocates for workplace well-being, mental health literacy, and more accessible support, including through community volunteer work and Filipino Sign Language study.',
+    tags: ['Workplace wellness', 'Advocacy', 'Accessible support'],
+    image: hulleza,
+  },
+  {
+    name: 'Jhun G. Himoldang',
+    role: 'Health and Well-being Access Mentor',
+    company: 'Counseling and HR Professional',
+    topic: 'Health & Well-being Access',
+    blurb:
+      'Jhun G. Himoldang brings multidisciplinary experience across business process outsourcing, insurance and investment services, workplace counseling, and academia. He takes a strategic, people-centered approach to building systems, strengthening programs, and supporting sustainable, inclusive growth.',
+    tags: ['Counseling', 'Program building', 'Inclusive initiatives'],
+    image: himoldang,
+  },
+  {
+    name: 'Ryem Jian Dumlao',
+    role: 'Governance, Trust, and Livelihoods Mentor',
+    company: 'UX Manager, Virtual Studios PH',
+    topic: 'Governance, Trust & Livelihoods',
+    blurb:
+      'Ryem Jian Dumlao guides teams in building user-centered products with stronger clarity, structure, and design thinking. Her background in UX research, product strategy, and design systems helps teams make smarter decisions quickly.',
+    tags: ['UX strategy', 'Product clarity', 'Design leadership'],
+    image: dumlao,
+  },
+  {
+    name: 'Louis Francisco',
+    role: 'Governance, Trust, and Livelihoods Mentor',
+    company: 'Senior Dev Fresh Grad, RCBC',
+    topic: 'Governance, Trust & Livelihoods',
+    blurb:
+      'Louis Francisco mentors teams with a builder-first mindset shaped by work across fintech, proptech, e-commerce, and digital media. He is especially strong at helping teams turn scrappy concepts into practical demos and stronger technical execution.',
+    tags: ['Technical execution', 'Hackathons', 'Product building'],
+    image: francisco,
+  },
+  {
+    name: 'Joshua Bumanlag',
+    role: 'Governance, Trust, and Livelihoods Mentor',
+    company: 'iOS Engineer, ING Hubs Philippines',
+    topic: 'Governance, Trust & Livelihoods',
+    blurb:
+      'Joshua Bumanlag previously served as a GDSC Lead and Notion Campus Leader, where he managed and mentored developers building cross-platform mobile applications. He brings hands-on product experience and a strong collaborative mindset to student teams.',
+    tags: ['Mentorship', 'Cross-platform apps', 'Team leadership'],
+    image: bumanlag,
+  },
+]
+
+const comingSoonGuests: GuestProfile[] = [
+  {
+    name: 'Lineup to Be Announced',
+    role: 'Final confirmations in progress',
+    company: 'More guest details coming soon',
+    blurb:
+      'Speaker and mentor profiles are already loaded into this section. Judge and additional guest details can be added as soon as the next confirmed files are ready.',
+    tags: ['Coming soon', 'Awaiting confirmation'],
+    placeholderLabel: 'TBA',
+  },
+]
+
 const guestGroups: GuestGroup[] = [
   {
     id: 'speakers',
     label: 'Speakers',
     accent: '#DA5B3C',
     buttonText: '#FFF8DB',
-    eyebrow: 'Featured talks and opening energy',
+    eyebrow: 'Featured talks and workshop sessions',
     description:
-      'A headline lineup to set the tone for the weekend with practical stories, bold ideas, and the kind of sessions that make teams want to build immediately.',
-    guests: [
-      {
-        name: 'McLovin',
-        role: 'Startup Storytelling Speaker',
-        company: 'Sample keynote profile',
-        blurb:
-          'Placeholder speaker bio for a high-energy opening talk focused on turning rough ideas into memorable products people can rally behind.',
-        tags: ['Keynote', 'Founder energy', 'Narrative'],
-        image: sample1,
-      },
-      {
-        name: 'Ramona Flowers',
-        role: 'Product Design Speaker',
-        company: 'Sample featured speaker',
-        blurb:
-          'Dummy profile copy for a speaker centered on crafting experience-driven products, shipping with taste, and staying sharp under pressure.',
-        tags: ['Design systems', 'UX clarity', 'Creative direction'],
-        image: sample2,
-      },
-      {
-        name: 'Patrick Bateman',
-        role: 'Brand Strategy Speaker',
-        company: 'Sample industry speaker',
-        blurb:
-          'Temporary content for a polished strategy talk around positioning, presentation discipline, and making a strong impression in competitive rooms.',
-        tags: ['Branding', 'Pitch polish', 'Executive framing'],
-        image: sample3,
-      },
-    ],
+      'Confirmed speakers now cover innovation strategy, user-centered design, rapid development, pitching, education access, and systemic wellness.',
+    guests: speakerGuests,
   },
   {
     id: 'mentors',
     label: 'Mentors',
     accent: '#7EB4AC',
     buttonText: '#1A1208',
-    eyebrow: 'Guidance during the build sprint',
+    eyebrow: 'Hands-on guidance during the build sprint',
     description:
-      'Mentors are positioned as hands-on guides for teams who need product, technical, and presentation feedback while ideas are still taking shape.',
-    guests: [
-      {
-        name: 'McLovin',
-        role: 'Hackathon Growth Mentor',
-        company: 'Sample mentor profile',
-        blurb:
-          'Placeholder mentor copy for helping teams validate their audience, simplify their message, and find the most convincing version of their story.',
-        tags: ['Growth loops', 'Audience fit', 'Messaging'],
-        image: sample1,
-      },
-      {
-        name: 'Ramona Flowers',
-        role: 'Design Sprint Mentor',
-        company: 'Sample mentor profile',
-        blurb:
-          'Dummy profile for a mentor supporting interface decisions, prototype refinement, and the small interaction choices that make a demo feel finished.',
-        tags: ['Prototype reviews', 'UX critique', 'Flows'],
-        image: sample2,
-      },
-      {
-        name: 'Patrick Bateman',
-        role: 'Pitch Positioning Mentor',
-        company: 'Sample mentor profile',
-        blurb:
-          'Temporary mentorship profile focused on sharpening value propositions, trimming weak slides, and helping teams present with confidence.',
-        tags: ['Deck cleanup', 'Positioning', 'Delivery'],
-        image: sample3,
-      },
-    ],
+      'Confirmed mentors bring strengths across education, mental health, counseling, UX, product development, partnerships, and team leadership.',
+    guests: mentorGuests,
   },
   {
     id: 'judges',
     label: 'Judges',
     accent: '#DFAD57',
     buttonText: '#1A1208',
-    eyebrow: 'Evaluation with product and business lens',
+    eyebrow: 'Evaluation lineup still being finalized',
     description:
-      'The judging group highlights the people who will examine feasibility, usability, and market direction once teams step into final presentation mode.',
-    guests: [
-      {
-        name: 'McLovin',
-        role: 'Feasibility Judge',
-        company: 'Sample judging profile',
-        blurb:
-          'Placeholder judging bio representing practical review of implementation scope, execution realism, and whether a concept can survive outside the event.',
-        tags: ['Execution', 'Technical fit', 'Scope'],
-        image: sample1,
-      },
-      {
-        name: 'Ramona Flowers',
-        role: 'User Experience Judge',
-        company: 'Sample judging profile',
-        blurb:
-          'Dummy judge copy for reviewing interface quality, accessibility of ideas, and whether the product genuinely solves a human problem clearly.',
-        tags: ['UX quality', 'Human-centered', 'Clarity'],
-        image: sample2,
-      },
-      {
-        name: 'Patrick Bateman',
-        role: 'Business Model Judge',
-        company: 'Sample judging profile',
-        blurb:
-          'Temporary judge profile focused on traction logic, market narrative, and whether a team can explain why their solution deserves attention.',
-        tags: ['Market fit', 'Strategy', 'Commercial sense'],
-        image: sample3,
-      },
-    ],
+      'Speaker and mentor data is already live. Judge details can drop into this track as soon as the confirmed lineup and source files are available.',
+    guests: comingSoonGuests,
   },
   {
     id: 'valuable-guests',
     label: 'Other Valuable Guests',
     accent: '#FFD65D',
     buttonText: '#1A1208',
-    eyebrow: 'Extra voices across the event space',
+    eyebrow: 'Additional guests can be added next',
     description:
-      'This block is reserved for notable guests who bring community value, inspiration...',
-    guests: [
-      {
-        name: 'McLovin',
-        role: 'Community Partner Guest',
-        company: 'Sample guest profile',
-        blurb:
-          'Placeholder profile for a guest contributing community visibility, grassroots perspective, and high-approachability networking energy.',
-        tags: ['Community', 'Networking', 'Ecosystem'],
-        image: sample1,
-      },
-      {
-        name: 'Ramona Flowers',
-        role: 'Startup Ecosystem Guest',
-        company: 'Sample guest profile',
-        blurb:
-          'Dummy content for a guest who adds product culture insight, startup-world context, and outside perspective teams can learn from in between sessions.',
-        tags: ['Startup culture', 'Insight', 'Connections'],
-        image: sample2,
-      },
-      {
-        name: 'Patrick Bateman',
-        role: 'Industry Network Guest',
-        company: 'Sample guest profile',
-        blurb:
-          'Temporary profile representing guests who elevate conversations around professionalism, presentation, and building strong external relationships.',
-        tags: ['Industry links', 'Presence', 'Professional polish'],
-        image: sample3,
-      },
-    ],
+      'This space is reserved for confirmed community partners, special guests, and additional contributors once their details are finalized.',
+    guests: comingSoonGuests,
   },
 ]
 
@@ -186,61 +252,6 @@ function wrapIndex(index: number, length: number) {
   }
 
   return (index + length) % length
-}
-
-type StageCardProps = {
-  guest: GuestProfile
-  accent: string
-  label: string
-  onClick: () => void
-  align: 'left' | 'right'
-}
-
-function StageCard({ guest, accent, label, onClick, align }: StageCardProps) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-label={label}
-      className={`group hidden h-full text-left lg:block ${
-        align === 'left' ? 'lg:pr-3 xl:pr-5' : 'lg:pl-3 xl:pl-5'
-      }`}
-    >
-      <article className="flex h-full min-h-[31rem] flex-col rounded-[28px] border border-[#1a0f00]/10 bg-white/60 p-4 shadow-[0_18px_44px_rgba(26,15,0,0.08)] transition duration-300 group-hover:-translate-y-1 group-hover:border-[#1a0f00]/20 xl:min-h-[34rem]">
-        <div className="overflow-hidden rounded-[22px] bg-[#1a1208]">
-          <div
-            className="h-[21rem] w-full xl:h-[24rem]"
-            style={{
-              background: `linear-gradient(180deg, ${accent}18 0%, rgba(26,18,8,0.05) 100%)`,
-            }}
-          >
-            <img
-              src={guest.image}
-              alt={guest.name}
-              className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
-            />
-          </div>
-        </div>
-
-        <div className="mt-4 flex flex-1 flex-col justify-between gap-5">
-          <div>
-            <span className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-[#1a0f00]/40">
-              {guest.company}
-            </span>
-            <h4 className="mt-2 text-[1.7rem] leading-[1.05] font-bold text-[#1a0f00]">
-              {guest.name}
-            </h4>
-            <p className="mt-2 text-sm leading-relaxed text-[#1a0f00]/60">{guest.role}</p>
-          </div>
-
-          <span
-            className="block h-px w-16 rounded-full"
-            style={{ backgroundColor: `${accent}55` }}
-          />
-        </div>
-      </article>
-    </button>
-  )
 }
 
 type NavButtonProps = {
@@ -276,6 +287,7 @@ function NavButton({ direction, onClick }: NavButtonProps) {
 export default function Guests() {
   const [activeGroupIndex, setActiveGroupIndex] = useState(0)
   const [spotlightIndex, setSpotlightIndex] = useState(1)
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right')
 
   const activeGroup = guestGroups[activeGroupIndex] ?? guestGroups[0]
   const guestCount = activeGroup.guests.length
@@ -294,10 +306,12 @@ export default function Guests() {
   }
 
   const goToPrevious = () => {
+    setSlideDirection('left')
     setSpotlightIndex((current) => wrapIndex(current - 1, guestCount))
   }
 
   const goToNext = () => {
+    setSlideDirection('right')
     setSpotlightIndex((current) => wrapIndex(current + 1, guestCount))
   }
 
@@ -332,40 +346,14 @@ export default function Guests() {
       />
 
       <div className="relative z-10 mx-auto flex max-w-7xl flex-col gap-8 px-6 py-24 md:px-12 md:py-28">
-        <div className="relative overflow-hidden rounded-[32px] border border-[#1a0f00]/10 bg-brand-cream/[0.85] px-6 py-8 shadow-[0_25px_70px_rgba(26,15,0,0.08)] backdrop-blur-sm md:px-10 md:py-10">
-          <div className="absolute inset-y-0 right-0 hidden w-1/3 bg-gradient-to-l from-brand-gold/10 to-transparent lg:block" />
-
-          <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
-              <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-brand-coral">
-                <span className="block h-px w-10 bg-brand-coral" />
-                Guest Lineup
-              </span>
-
-              <h2 className="mt-5 text-4xl font-bold leading-tight text-[#1a0f00] md:text-5xl lg:text-6xl">
-                Speakers, Mentors, Judges, and
-                <span className="block text-brand-coral">Other Valuable Guests</span>
-              </h2>
-
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#1a0f00]/60 md:text-base">
-                A dedicated stage for the people shaping the InnOlympics experience,
-                from featured talks and mentorship rounds to final judging and
-                community-building moments in between.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#1a0f00]/55">
-              <span className="rounded-full border border-[#1a0f00]/10 bg-white/60 px-4 py-2">
-                4 guest tracks
-              </span>
-              <span className="rounded-full border border-[#1a0f00]/10 bg-white/60 px-4 py-2">
-                3 sample profiles
-              </span>
-              <span className="rounded-full border border-[#1a0f00]/10 bg-white/60 px-4 py-2">
-                asset-led layout
-              </span>
-            </div>
-          </div>
+        <div className="text-center">
+          <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-brand-coral">
+            <span className="block h-px w-10 bg-brand-coral" />
+            Guest Lineup
+          </span>
+          <h2 className="mt-4 text-4xl font-bold leading-tight text-[#1a0f00] md:text-5xl">
+            Speakers, Mentors & Judges
+          </h2>
         </div>
 
         <div className="relative overflow-hidden rounded-[40px] border border-[#1a0f00]/10 px-5 py-8 shadow-[0_28px_90px_rgba(26,15,0,0.12)] sm:px-6 md:px-10 md:py-10 lg:px-14 lg:py-14">
@@ -386,8 +374,8 @@ export default function Guests() {
           />
 
           <div className="relative flex flex-col gap-8">
-            <div className="flex flex-col gap-6 xl:grid xl:min-h-[11rem] xl:grid-cols-[minmax(0,1fr)_minmax(26rem,40rem)] xl:items-start xl:gap-8">
-              <div className="max-w-2xl">
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div>
                 <span
                   className="inline-flex items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.28em]"
                   style={{ color: activeGroup.accent }}
@@ -399,49 +387,35 @@ export default function Guests() {
                   {activeGroup.eyebrow}
                 </span>
 
-                <h3 className="mt-4 text-3xl font-bold text-[#1a0f00] md:text-4xl">
+                <h3 className="mt-3 text-2xl font-bold text-[#1a0f00] md:text-3xl">
                   {activeGroup.label}
                 </h3>
-
-                <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#1a0f00]/60 md:text-base">
-                  {activeGroup.description}
-                </p>
               </div>
 
-              <div className="w-full xl:ml-auto xl:max-w-[40rem]">
-                <div className="flex items-center gap-3 text-[0.68rem] font-bold uppercase tracking-[0.24em] text-[#1a0f00]/[0.42]">
-                  <span className="block h-px flex-1 bg-[#1a0f00]/[0.12]" />
-                  Categories
-                  <span className="block h-px flex-1 bg-[#1a0f00]/[0.12]" />
-                </div>
+              <div className="flex flex-wrap items-center gap-3">
+                {guestGroups.map((group, index) => {
+                  const isActive = index === activeGroupIndex
 
-                <div className="mt-3 overflow-x-auto px-1 pt-2 pb-3">
-                  <div className="flex w-max min-w-full items-center gap-3 xl:justify-end">
-                    {guestGroups.map((group, index) => {
-                      const isActive = index === activeGroupIndex
-
-                      return (
-                        <button
-                          key={group.id}
-                          type="button"
-                          onClick={() => {
-                            setActiveGroupIndex(index)
-                            setSpotlightIndex(1)
-                          }}
-                          aria-pressed={isActive}
-                          className="shrink-0 cursor-pointer whitespace-nowrap rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors duration-200"
-                          style={{
-                            backgroundColor: isActive ? group.accent : `${group.accent}14`,
-                            color: isActive ? group.buttonText : '#1A1208',
-                            borderColor: isActive ? group.accent : `${group.accent}33`,
-                          }}
-                        >
-                          {group.label}
-                        </button>
-                      )
-                    })}
-                  </div>
-                </div>
+                  return (
+                    <button
+                      key={group.id}
+                      type="button"
+                      onClick={() => {
+                        setActiveGroupIndex(index)
+                        setSpotlightIndex(1)
+                      }}
+                      aria-pressed={isActive}
+                      className="shrink-0 cursor-pointer whitespace-nowrap rounded-full border px-4 py-2 text-sm font-semibold transition-colors duration-200"
+                      style={{
+                        backgroundColor: isActive ? group.accent : `${group.accent}14`,
+                        color: isActive ? group.buttonText : '#1A1208',
+                        borderColor: isActive ? group.accent : `${group.accent}33`,
+                      }}
+                    >
+                      {group.label}
+                    </button>
+                  )
+                })}
               </div>
             </div>
 
@@ -450,32 +424,26 @@ export default function Guests() {
               <NavButton direction="next" onClick={goToNext} />
             </div>
 
-            <div className="relative min-h-[56rem] lg:min-h-[39rem]">
-              <div className="pointer-events-none absolute left-0 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:block">
+            <div className="relative flex justify-center">
+              <div className="pointer-events-none absolute left-0 top-1/2 hidden -translate-x-full -translate-y-1/2 lg:block lg:-translate-x-8">
                 <div className="pointer-events-auto">
                   <NavButton direction="previous" onClick={goToPrevious} />
                 </div>
               </div>
-              <div className="pointer-events-none absolute right-0 top-1/2 hidden translate-x-1/2 -translate-y-1/2 lg:block">
+              <div className="pointer-events-none absolute right-0 top-1/2 hidden translate-x-full -translate-y-1/2 lg:block lg:translate-x-8">
                 <div className="pointer-events-auto">
                   <NavButton direction="next" onClick={goToNext} />
                 </div>
               </div>
 
-              <div className="grid items-end gap-5 lg:min-h-[39rem] lg:grid-cols-[0.82fr_1.12fr_0.82fr]">
-                <StageCard
-                  guest={previousGuest}
-                  accent={activeGroup.accent}
-                  label={`Show ${previousGuest.name}`}
-                  onClick={goToPrevious}
-                  align="left"
-                />
-
+              <div className="w-full max-w-4xl">
                 <article
-                  className="relative flex min-h-[35rem] flex-col overflow-hidden rounded-[34px] border bg-[#1a1208] p-5 text-white shadow-[0_36px_80px_rgba(26,15,0,0.26)] sm:p-6 md:p-8 lg:h-[39rem]"
+                  className="relative flex flex-col overflow-hidden rounded-[34px] border bg-[#1a1208] p-6 text-white shadow-[0_36px_80px_rgba(26,15,0,0.26)] sm:p-8 md:p-10"
                   style={{
                     borderColor: `${activeGroup.accent}55`,
                     boxShadow: `0 36px 80px ${activeGroup.accent}22`,
+                    minHeight: '600px',
+                    maxHeight: '600px',
                   }}
                 >
                   <div
@@ -486,170 +454,161 @@ export default function Guests() {
                     }}
                   />
 
-                  <div
-                    className="pointer-events-none absolute inset-x-0 top-0 h-36"
+                  <div 
+                    key={`${currentGuest.name}-${spotlightIndex}`}
+                    className="relative flex flex-col"
                     style={{
-                      background: `radial-gradient(circle at top, ${activeGroup.accent}22 0%, transparent 72%)`,
+                      animation: slideDirection === 'right' ? 'slideInFromRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards' : 'slideInFromLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
                     }}
-                  />
-
-                  <div className="relative flex h-full min-h-0 flex-col">
-                    <div className="flex items-center justify-between gap-3">
+                  >
+                    <style>{`
+                      @keyframes slideInFromRight {
+                        from {
+                          transform: translateX(100%);
+                          opacity: 0;
+                        }
+                        to {
+                          transform: translateX(0);
+                          opacity: 1;
+                        }
+                      }
+                      @keyframes slideInFromLeft {
+                        from {
+                          transform: translateX(-100%);
+                          opacity: 0;
+                        }
+                        to {
+                          transform: translateX(0);
+                          opacity: 1;
+                        }
+                      }
+                    `}</style>
+                    <div className="flex items-center justify-between gap-3 mb-6">
                       <span
-                        className="rounded-full px-3.5 py-1.5 text-[0.64rem] font-bold uppercase tracking-[0.2em]"
+                        className="rounded-full px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.2em]"
                         style={{
                           backgroundColor: `${activeGroup.accent}22`,
                           border: `1px solid ${activeGroup.accent}44`,
                           color: activeGroup.accent,
                         }}
                       >
-                        {activeGroup.label}
+                        {currentGuest.topic || activeGroup.label}
                       </span>
-                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-white/55">
+                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/55">
                         Featured
                       </span>
                     </div>
 
-                    <div className="mt-5 flex flex-col items-center text-center">
-                      <div
-                        className="rounded-full p-1.5 shadow-[0_0_0_8px_rgba(255,248,219,0.04)]"
-                        style={{ background: `linear-gradient(135deg, ${activeGroup.accent}, #FFF8DB)` }}
-                      >
-                        <div className="h-36 w-36 overflow-hidden rounded-full border-4 border-[#1f150d] bg-[#1a1208] sm:h-40 sm:w-40">
-                          <img
-                            src={currentGuest.image}
-                            alt={currentGuest.name}
-                            className="h-full w-full object-cover object-top"
-                          />
+                    <div className="grid gap-8 lg:grid-cols-[auto_1fr]">
+                      {/* Left side - Avatar and basic info */}
+                      <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
+                        <div
+                          className="rounded-full p-2 shadow-[0_0_0_10px_rgba(255,248,219,0.04)]"
+                          style={{ background: `linear-gradient(135deg, ${activeGroup.accent}, #FFF8DB)` }}
+                        >
+                          <div className="h-40 w-40 overflow-hidden rounded-full border-4 border-[#1f150d] bg-[#1a1208] sm:h-48 sm:w-48">
+                            {currentGuest.image ? (
+                              <img
+                                src={currentGuest.image}
+                                alt={currentGuest.name}
+                                className="h-full w-full object-cover object-top"
+                              />
+                            ) : (
+                              <div
+                                className="flex h-full w-full items-center justify-center px-6 text-center"
+                                style={{
+                                  background: `linear-gradient(135deg, ${activeGroup.accent}38 0%, rgba(26,18,8,0.92) 100%)`,
+                                }}
+                              >
+                                <span className="text-sm font-bold uppercase tracking-[0.24em] text-white/72">
+                                  {currentGuest.placeholderLabel ?? 'TBA'}
+                                </span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="mt-6 flex w-full flex-col items-center gap-3 lg:items-start">
+                          <h4 className="text-[2rem] font-bold leading-[1.15] text-brand-cream sm:text-[2.25rem]">
+                            {currentGuest.name}
+                          </h4>
+                          <p className="text-base leading-[1.4] text-brand-cream/65">
+                            {currentGuest.company}
+                          </p>
+                          <p
+                            className="text-sm leading-[1.3] font-semibold uppercase tracking-[0.15em]"
+                            style={{ color: activeGroup.accent }}
+                          >
+                            {currentGuest.role}
+                          </p>
                         </div>
                       </div>
 
-                      <div className="mt-5 flex min-h-[8.25rem] max-w-[17rem] flex-col items-center">
-                        <h4 className="text-[2rem] font-bold leading-[0.98] text-brand-cream sm:text-[2.25rem]">
-                          {currentGuest.name}
-                        </h4>
-                        <p className="mt-2 max-w-[15rem] text-sm text-brand-cream/55">
-                          {currentGuest.company}
-                        </p>
-                        <p
-                          className="mt-3 max-w-[16rem] text-sm leading-relaxed font-semibold uppercase tracking-[0.2em]"
-                          style={{ color: activeGroup.accent }}
-                        >
-                          {currentGuest.role}
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mt-5 flex min-h-[11rem] flex-1 flex-col">
-                      <div className="flex h-full flex-col rounded-[26px] border border-white/10 bg-white/[0.05] p-5 sm:p-6">
-                        <span className="text-[0.68rem] font-bold uppercase tracking-[0.22em] text-brand-gold">
-                          About
-                        </span>
-                        <div className="mt-3 h-[8rem] overflow-hidden">
-                          <p
-                            className="text-sm leading-relaxed text-white/[0.78]"
+                      {/* Right side - Description and tags */}
+                      <div className="flex flex-col gap-6">
+                        <div className="flex flex-col rounded-[26px] border border-white/10 bg-white/[0.05] p-6 sm:p-8" style={{ minHeight: '280px', maxHeight: '280px', overflow: 'hidden' }}>
+                          <span className="text-[0.75rem] font-bold uppercase tracking-[0.22em] text-brand-gold mb-4">
+                            About
+                          </span>
+                          <p 
+                            className="text-[0.85rem] leading-[1.55] text-white/[0.82]"
                             style={{
                               display: '-webkit-box',
+                              WebkitLineClamp: 11,
                               WebkitBoxOrient: 'vertical',
-                              WebkitLineClamp: 5,
                               overflow: 'hidden',
                             }}
                           >
                             {currentGuest.blurb}
                           </p>
                         </div>
+
+                        <div className="flex flex-wrap gap-2.5" style={{ minHeight: '80px', maxHeight: '80px', overflow: 'hidden' }}>
+                          {currentGuest.tags.map((tag) => (
+                            <span
+                              key={`${currentGuest.name}-${tag}`}
+                              className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white/55"
+                              style={{ height: 'fit-content' }}
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
+                  </div>
 
-                    <div className="mt-4 shrink-0 flex justify-center">
-                      <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-3 py-2 shadow-[0_10px_26px_rgba(0,0,0,0.16)]">
-                        {activeGroup.guests.map((guest, index) => {
-                          const isActive = index === wrapIndex(spotlightIndex, guestCount)
+                  {/* Dot indicators - outside animated content so they don't slide */}
+                  <div className="relative mt-8 flex justify-center">
+                    <div className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2.5 shadow-[0_10px_26px_rgba(0,0,0,0.16)]">
+                      {activeGroup.guests.map((guest, index) => {
+                        const isActive = index === wrapIndex(spotlightIndex, guestCount)
 
-                          return (
-                            <button
-                              key={`${activeGroup.id}-${guest.name}`}
-                              type="button"
-                              onClick={() => setSpotlightIndex(index)}
-                              aria-label={`Show ${guest.name}`}
-                              className="cursor-pointer rounded-full transition"
-                              style={{
-                                width: isActive ? '2rem' : '0.7rem',
-                                height: '0.7rem',
-                                backgroundColor: isActive ? activeGroup.accent : 'rgba(255,255,255,0.22)',
-                              }}
-                            />
-                          )
-                        })}
-                      </div>
+                        return (
+                          <button
+                            key={`${activeGroup.id}-${guest.name}`}
+                            type="button"
+                            onClick={() => {
+                              setSlideDirection(index > spotlightIndex ? 'right' : 'left')
+                              setSpotlightIndex(index)
+                            }}
+                            aria-label={`Show ${guest.name}`}
+                            className="cursor-pointer rounded-full transition-all duration-300"
+                            style={{
+                              width: isActive ? '2.25rem' : '0.75rem',
+                              height: '0.75rem',
+                              backgroundColor: isActive ? activeGroup.accent : 'rgba(255,255,255,0.22)',
+                            }}
+                          />
+                        )
+                      })}
                     </div>
                   </div>
                 </article>
-
-                <StageCard
-                  guest={nextGuest}
-                  accent={activeGroup.accent}
-                  label={`Show ${nextGuest.name}`}
-                  onClick={goToNext}
-                  align="right"
-                />
               </div>
 
-              <div className="mt-5 grid grid-cols-2 gap-4 lg:hidden">
-                <button
-                  type="button"
-                  onClick={goToPrevious}
-                  className="rounded-[24px] border border-[#1a0f00]/10 bg-white/55 p-3 text-left shadow-[0_16px_34px_rgba(26,15,0,0.07)]"
-                >
-                  <div className="overflow-hidden rounded-[18px]">
-                    <div
-                      className="h-[16rem]"
-                      style={{
-                        background: `linear-gradient(180deg, ${activeGroup.accent}16 0%, rgba(26,18,8,0.04) 100%)`,
-                      }}
-                    >
-                      <img
-                        src={previousGuest.image}
-                        alt={previousGuest.name}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                  </div>
-                  <h4 className="mt-3 text-lg font-bold text-[#1a0f00]">{previousGuest.name}</h4>
-                  <p className="mt-1 text-xs leading-relaxed text-[#1a0f00]/60">{previousGuest.role}</p>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={goToNext}
-                  className="rounded-[24px] border border-[#1a0f00]/10 bg-white/55 p-3 text-left shadow-[0_16px_34px_rgba(26,15,0,0.07)]"
-                >
-                  <div className="overflow-hidden rounded-[18px]">
-                    <div
-                      className="h-[16rem]"
-                      style={{
-                        background: `linear-gradient(180deg, ${activeGroup.accent}16 0%, rgba(26,18,8,0.04) 100%)`,
-                      }}
-                    >
-                      <img
-                        src={nextGuest.image}
-                        alt={nextGuest.name}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                  </div>
-                  <h4 className="mt-3 text-lg font-bold text-[#1a0f00]">{nextGuest.name}</h4>
-                  <p className="mt-1 text-xs leading-relaxed text-[#1a0f00]/60">{nextGuest.role}</p>
-                </button>
-              </div>
             </div>
 
-            <div className="rounded-[26px] border border-[#1a0f00]/[0.08] bg-white/45 px-4 py-4 text-sm leading-relaxed text-[#1a0f00]/[0.58] md:px-5">
-              Photos and biographies in this section currently use the placeholder
-              assets from <span className="font-semibold text-[#1a0f00]/[0.72]">src/guest-pics</span>.
-              The structure is ready for the final confirmed lineup once names, titles,
-              and organizations are locked in.
-            </div>
           </div>
         </div>
       </div>
