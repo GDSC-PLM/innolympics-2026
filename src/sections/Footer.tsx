@@ -1,8 +1,11 @@
-import brandWide from '../partners/sample-brand-wide.svg'
-import logoSmall from '../partners/sample-logo-small.svg'
-import logoMid from '../partners/sample-logo-medium.svg'
-import brandLong from '../partners/sample-brand-long.svg'
-import contLong from '../partners/contributor-long.svg'
+import manus from '../partners/manus_light.png'
+import notion from '../partners/notion-logo-block-sticker.png'
+import omni from '../partners/Omni_White_Icon 1.png'
+import cont from '../partners/contributor-long.svg'
+import whitecloak from '../partners/whitecloak_wh.png'
+import hr from '../partners/homeroom.png'
+import kmc from '../partners/kmc.png'
+
 
 const links = [
   { id: 'email',     label: 'Gmail',     link: 'mailto:dsc.haribon@gmail.com' },
@@ -34,42 +37,46 @@ export default function Footer() {
       {/* Footer + Registration CTA */}
       {/* content wrapper */}
       <div className="mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-4 grid-rows-2 gap-x-3 gap-y-10 md:gap-y-6 px-6 md:px-12">
-        {/* Presented By */}
-        <div className="">
-          <h5 className="text-brand-gold text-center mb-4 md:mb-7">Presented By</h5>
+        {/* Presented By - Change Notion "hidden" status if incldued */}
+        <div className="flex flex-col items-center">
+          <h6 className="mb-4 inline-flex rounded-full border border-brand-sand bg-brand-sand/8 px-4 py-1.5 text-center text-xs text-brand-sand backdrop-blur-[2px] md:mb-7 md:text-sm">
+            Presented By
+          </h6>
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <img src={brandWide} alt="wide brand" className="w-[50%]" />
-            <img src={logoSmall} alt="small logo" className="w-[10%]" />
-            <img src={logoMid} alt="mid logo" className="w-[15%]" />
-            <img src={brandLong} alt="long brand" className="w-[50%]" />
+            <img src={omni} alt="wide brand" className="w-[25%]" />
+            <img src={notion} alt="Notion" className="w-[25%] hidden"/>
+            <img src={manus} alt="wide brand" className="w-[50%]" />
           </div>
         </div>
 
         {/* Co-presented By */}
-        <div className="">
-          <h5 className="text-brand-gold text-center mb-4 md:mb-7">Co-Presented By</h5>
+        <div className="flex flex-col items-center">
+          <h6 className="mb-4 inline-flex rounded-full border border-brand-sand bg-brand-sand/8 px-4 py-1.5 text-center text-xs text-brand-sand backdrop-blur-[2px] md:mb-7 md:text-sm">
+            Co-Presented By
+          </h6>
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <img src={brandWide} alt="wide brand" className="w-[50%]" />
-            <img src={logoSmall} alt="small logo" className="w-[10%]" />
-            <img src={brandLong} alt="long brand" className="w-[50%]" />
+            <img src={hr} alt="small logo" className="w-[25%]" />
           </div>
         </div>
 
         {/* Contributor */}
-        <div className="">
-          <h5 className="text-brand-gold text-center mb-4 md:mb-7">Contributor</h5>
+        <div className="flex flex-col items-center">
+          <h6 className="mb-4 inline-flex rounded-full border border-brand-sand bg-brand-sand/8 px-4 py-1.5 text-center text-xs text-brand-sand backdrop-blur-[2px] md:mb-7 md:text-sm">
+            Contributor
+          </h6>
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <img src={brandWide} alt="wide brand" className="w-[50%]" />
-            <img src={brandLong} alt="small logo" className="w-[50%]" />
-            <img src={contLong} alt="long logo" className="w-[50%]" />
+            <img src={cont} alt="long logo" className="w-[50%] hidden" />
+            <img src={whitecloak} alt="long logo" className="w-[70%]" />
           </div>
         </div>
 
         {/* Official Venue Partner */}
-        <div className="">
-          <h5 className="text-brand-gold text-center mb-4 md:mb-7">Official Venue Partner</h5>
+        <div className="flex flex-col items-center">
+          <h6 className="mb-4 inline-flex rounded-full border border-brand-sand bg-brand-sand/8 px-4 py-1.5 text-center text-xs text-brand-sand backdrop-blur-xs md:mb-7 md:text-sm">
+            Official Venue Partner
+          </h6>
           <div className="flex items-center justify-center gap-4 flex-wrap">
-            <img src={brandLong} alt="long brand" className="w-[50%]" />
+            <img src={kmc} alt="long brand" className="w-[40%]" />
           </div>
         </div>
 
@@ -81,7 +88,7 @@ export default function Footer() {
             <span className="text-white">lympics</span>
             <span className="text-brand-gold leading-tight"> 2026</span>
           </h1>
-          <p className="text-brand-cream italic ">Elevate Ideas for Innovation</p>
+          <p className="text-brand-cream italic ">To Let Filipinos Dream Without Compromise</p>
           <div className="mt-4 flex items-center gap-3">
             <button className="inline-flex h-11 items-center rounded-full bg-brand-coral px-5 lg:px-7 text-[0.7rem] lg:text-sm font-semibold text-white transition-all duration-200 hover:bg-brand-coral/90 active:scale-95 shadow-lg shadow-brand-coral/40 cursor-pointer">
             Register Now
@@ -104,7 +111,9 @@ export default function Footer() {
 
         {/* external links */}
         <div className="w-full md:col-start-3 text-brand-sand mx-2 my-5">
-          <h5 className="text-brand-gold mb-4 md:mb-7">Socials</h5>
+          <h6 className="mb-4 inline-flex rounded-full border border-brand-sand bg-brand-sand/8 px-4 py-1.5 text-xs text-brand-sand backdrop-blur-[2px] md:mb-7 md:text-sm">
+            Socials
+          </h6>
           <ul className="flex flex-col gap-6">
             {links.map((link) => (
               <li key={link.id}>

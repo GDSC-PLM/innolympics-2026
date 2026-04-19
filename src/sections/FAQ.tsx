@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import orangeredShape from '../raw-assets/orangered-shape.png'
 
 type FAQEntry = {
   id: string
@@ -16,29 +17,35 @@ type FAQGroup = {
 
 const faqGroups: FAQGroup[] = [
   {
-    id: 'event-basics',
-    eyebrow: 'Planning the weekend',
-    title: 'Event Basics',
+    id: 'event-primer',
+    eyebrow: 'Initializing readiness',
+    title: 'Event Primer',
     description:
-      'This first cluster covers the details attendees usually look for before registration, including format, eligibility, and what to expect from the flow.',
+      "Know what this year's InnOlympics has to offer. Your readiness is key to elevating ideas",
     items: [
       {
         id: 'what-is-innolympics',
         question: 'What is InnOlympics 2026?',
         answer:
-          'InnOlympics 2026 is a student-focused innovation event built around collaborative problem-solving, guided sessions, and a hackathon-style sprint that ends with project presentations.',
+          'InnOlympics 2026 is a 2-day, 1-night hackathon where teams of four build practical solutions that make it easier for Filipinos to dream without compromise.',
       },
       {
-        id: 'who-can-join',
-        question: 'Who can join the event?',
+        id: 'theme-this-year',
+        question: 'What is the theme for this year?',
         answer:
-          'The current structure is ready for student participants, campus organizations, mentors, and invited guests. Once eligibility rules are finalized, this entry can be updated without changing the component logic.',
+          'Participants will choose one of three tracks—Pangarap sa Pagkatuto (Education & Opportunity Access), Pangarap sa Kalusugan (Health & Well-being Access), or Pangarap sa Bayan (Governance, Trust, and Livelihoods).',
       },
       {
-        id: 'team-format',
-        question: 'Will participants join individually or as teams?',
+        id: 'event-rules',
+        question: 'Are there specific rules for the project?',
         answer:
-          'This section is set up to support either format. You can update this answer later with the final team size, matching rules, and whether solo attendees will be grouped on-site.',
+          'Projects must be grounded in Filipino context and designed for real constraints, and teams are still required to integrate at least one Google technology',
+      },
+      {
+        id: 'team-members',
+        question: 'Can I join the hackathon solo?',
+        answer: 
+          'No, individual registrations are not allowed. You must have a fully-formed team of 4 members upon registration.',
       },
     ],
   },
@@ -47,25 +54,30 @@ const faqGroups: FAQGroup[] = [
     eyebrow: 'Getting ready to attend',
     title: 'Logistics and Preparation',
     description:
-      'Use this block for venue, materials, foods, and check-in guidance once those pieces are locked in by the organizing team.',
+      'Plan your trip, pack your bags, and definitely charge your devices. Let us see where InnOlympics 2026 will bring you this time.',
     items: [
       {
-        id: 'what-to-bring',
-        question: 'What should participants bring?',
-        answer:
-          'A working laptop, charger, school ID, and any materials needed for pitching are a safe baseline. You can later expand this answer with dress code notes, extension cords, and other event-specific reminders.',
-      },
-      {
-        id: 'meals-and-support',
-        question: 'Will meals or participant support be provided?',
-        answer:
-          'The layout already supports operational FAQs like meals, internet access, wellness breaks, and on-site assistance. Replace this placeholder with confirmed support inclusions once available.',
-      },
-      {
         id: 'venue-details',
-        question: 'When will the venue and exact schedule be announced?',
+        question: 'Where is the venue going to be at?',
         answer:
-          'You can use this answer to point visitors to the confirmed venue release date, transportation notes, and any last-mile instructions once the final logistics package is ready.',
+          'Our venue partner, KMC Solutions, has permitted to launch this event in their offices at the 18th Floor EXXA Tower, Bridgetown Business Park, Quezon City.',
+      },
+      {
+        id: 'eat-and-sleep',
+        question: 'Will there be places to eat and sleep?',
+        answer:
+          'For food, there are pantries, concessionaires and restaurants available. There are designated sleep schedules and spaces for each track.',
+      },
+      {
+        id: 'what-to-bring',
+        question: 'What are we allowed to bring?',
+        answer:
+          'Your team is highly encouraged to bring laptops, smartphones, their chargers, and other devices essential to project building—as well as the genius, talent, and your full enthusiasm on D-Day. ',
+      },
+      {
+        id: 'ushers-mentors',
+        question: 'Will there be people to guide us throughout?',
+        answer: 'If it is about helping you navigate the venue, there will be ushers available within the premises. If it is about the project, there will be mentors and help desks to reach out if your team needs guidance.',
       },
     ],
   },
@@ -95,6 +107,13 @@ export default function FAQ() {
       id="faq"
       className="relative overflow-hidden bg-brand-cream py-24 md:py-28"
     >
+      <img
+        src={orangeredShape}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 top-0 z-0 hidden h-full w-[12rem] object-cover object-left opacity-25 md:block md:w-[16rem] lg:w-[20rem] xl:w-[24rem]"
+      />
+
       {/* subtle circle designs in the FAQ section */}
       <div
         className="pointer-events-none absolute inset-0 opacity-60"
@@ -107,15 +126,7 @@ export default function FAQ() {
       {/* FAQ proper */}
       <div className="relative z-10 mx-auto flex max-w-7xl flex-col gap-8 px-6 md:px-12">
         {/* Section header */}
-        <div className="relative overflow-hidden rounded-4xl border border-[#1a0f00]/10 bg-white/55 px-6 py-8 shadow-[0_25px_70px_rgba(26,15,0,0.08)] backdrop-blur-sm md:px-10 md:py-10">
-          <div
-            className="pointer-events-none absolute inset-0"
-            style={{
-              background:
-                'linear-gradient(135deg, rgba(218,91,60,0.05) 0%, transparent 42%, rgba(126,180,172,0.08) 100%)',
-            }}
-          />
-
+        <div className="relative px-6 py-8 md:px-10 md:py-10">
           <div className="relative flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
               <span className="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-brand-teal">
@@ -124,30 +135,16 @@ export default function FAQ() {
               </span>
 
               <h2 className="mt-5 text-4xl font-bold leading-tight text-[#1a0f00] md:text-5xl lg:text-6xl">
-                Important Details,
-                <span className="block text-brand-teal">all in one look</span>
+                Important
+                <span className="md:ml-4 block md:inline text-brand-teal">Details</span>
               </h2>
-
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#1a0f00]/60 md:text-base">
-                This first version is built to scale with the event. Questions and
-                answers can be swapped, expanded, or regrouped later without changing
-                the section structure or the interaction pattern.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#1a0f00]/55">
-              <span className="rounded-full border border-[#1a0f00]/10 bg-white/60 px-4 py-2">
-                {faqGroups.length} question groups
-              </span>
-              <span className="rounded-full border border-[#1a0f00]/10 bg-white/60 px-4 py-2">
-                {faqGroups.reduce((total, group) => total + group.items.length, 0)} starter entries
-              </span>
+              <p className="text-[#1a0f00]/50 mt-3">that you don&apos;t want to miss</p>
             </div>
           </div>
         </div>
         
         {/* FAQs container */}
-        <div className="relative overflow-hidden rounded-[36px] border border-brand-teal/70 bg-white/70 px-5 py-6 shadow-[0_28px_90px_rgba(26,15,0,0.12)] backdrop-blur-md sm:px-6 md:px-8 md:py-8 lg:px-10 lg:py-10">
+        <div className="relative overflow-hidden rounded-[36px] border border-brand-teal/70 bg-white/40 px-5 py-6 shadow-[0_28px_90px_rgba(26,15,0,0.12)] backdrop-blur-[2px] sm:px-6 md:px-8 md:py-8 lg:px-10 lg:py-10">
           <div
             className="pointer-events-none absolute inset-0"
             style={{
