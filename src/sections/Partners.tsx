@@ -479,7 +479,7 @@ export default function Partners() {
                   }
                 `}</style>
 
-                <div className="h-full min-h-[26rem] max-h-[26rem] rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,248,219,0.1)_0%,rgba(255,255,255,0.04)_100%)] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.16)] sm:min-h-[30rem] sm:max-h-[30rem] xl:min-h-[32rem] xl:max-h-[32rem]">
+                <div className="h-full min-h-[26rem] max-h-[26rem] rounded-[30px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,248,219,0.1)_0%,rgba(255,255,255,0.04)_100%)] p-5 shadow-[0_20px_50px_rgba(0,0,0,0.16)] sm:min-h-[30rem] sm:max-h-[30rem] xl:min-h-[34rem] xl:max-h-[34rem]">
                   <span className="rounded-full border border-white/12 bg-white/[0.05] px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-white/62">
                     Currently Highlighted
                   </span>
@@ -503,10 +503,10 @@ export default function Partners() {
                   </div>
                 </div>
 
-                <div className="flex h-full min-h-[26rem] max-h-[26rem] flex-col gap-5 rounded-[30px] border border-white/10 bg-black/15 p-6 md:p-8 sm:min-h-[30rem] sm:max-h-[30rem] xl:min-h-[32rem] xl:max-h-[32rem] overflow-hidden">
+                <div className="flex h-full min-h-[28rem] max-h-[34rem] flex-col gap-4 overflow-y-auto rounded-[30px] border border-white/10 bg-black/15 p-5 sm:min-h-[30rem] sm:max-h-[30rem] sm:overflow-hidden sm:p-6 md:p-8 xl:min-h-[34rem] xl:max-h-[34rem]">
                   <div className="flex flex-wrap gap-2">
                     <span
-                      className="rounded-full px-4 py-2 text-[0.72rem] font-bold uppercase tracking-[0.18em]"
+                      className="max-w-full rounded-full px-4 py-2 text-center text-[0.64rem] font-bold uppercase leading-snug tracking-[0.14em] sm:text-[0.72rem] sm:tracking-[0.18em]"
                       style={{
                         backgroundColor: `${activeSpotlight.accent}22`,
                         border: `1px solid ${activeSpotlight.accent}55`,
@@ -515,25 +515,25 @@ export default function Partners() {
                     >
                       {activeSpotlight.tierLabel}
                     </span>
-                    <span className="rounded-full border border-white/12 bg-white/[0.05] px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-white/58">
+                    <span className="max-w-full rounded-full border border-white/12 bg-white/[0.05] px-4 py-2 text-center text-[0.64rem] font-semibold uppercase leading-snug tracking-[0.14em] text-white/58 sm:text-[0.72rem] sm:tracking-[0.18em]">
                       {activeSpotlight.tierFootnote}
                     </span>
                   </div>
 
                   <div>
-                    <h4 className="text-3xl font-bold leading-tight text-white sm:text-[2.3rem]">
+                    <h4 className="break-words text-2xl font-bold leading-tight text-white sm:text-3xl xl:text-[2.3rem]">
                       {activeSpotlight.name}
                     </h4>
-                    <p className="mt-3 text-sm leading-relaxed text-white/68 md:text-base min-h-[4.5rem]">
+                    <p className="mt-3 min-h-[5.25rem] text-[0.82rem] leading-[1.65] text-white/68 sm:min-h-[4.75rem] md:text-[0.92rem]">
                       {activeSpotlight.tierDescription}
                     </p>
                   </div>
 
-                  <div className="flex-1 rounded-[24px] border border-white/10 bg-white/[0.04] p-5 overflow-y-auto">
-                    <span className="text-[0.72rem] font-bold uppercase tracking-[0.2em] text-brand-gold">
+                  <div className="max-h-[13rem] flex-1 overflow-y-auto rounded-[24px] border border-white/10 bg-white/[0.04] p-4 sm:max-h-none sm:p-5">
+                    <span className="text-[0.68rem] font-bold uppercase tracking-[0.18em] text-brand-gold sm:text-[0.72rem] sm:tracking-[0.2em]">
                       About This Organization
                     </span>
-                    <p className="mt-4 text-sm leading-relaxed text-white/82 md:text-base">
+                    <p className="mt-4 text-[0.82rem] leading-relaxed text-white/82 md:text-[0.95rem]">
                       {activeSpotlight.summary}
                     </p>
                   </div>

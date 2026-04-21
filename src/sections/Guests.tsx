@@ -34,6 +34,13 @@ const hulleza = new URL('../raw-assets/mentors/hulleza.jpg', import.meta.url).hr
 const madero = new URL('../raw-assets/mentors/madero.png', import.meta.url).href
 const tolentino = new URL('../raw-assets/mentors/tolentino.png', import.meta.url).href
 const williams = new URL('../raw-assets/mentors/williams.jpeg', import.meta.url).href
+const shennaSunico = new URL('../raw-assets/judges/1 Atty Shenna Sunico.jpg', import.meta.url)
+  .href
+const christopherCarlos = new URL('../raw-assets/judges/Carlos.png', import.meta.url).href
+const michaelPeduche = new URL('../raw-assets/judges/Peduche.png', import.meta.url).href
+const rafsanjaniRanin = new URL('../raw-assets/judges/Rafsanjani Rañin_Photo-GDSC.jpg', import.meta.url)
+  .href
+const juanMiguelMendoza = new URL('../raw-assets/judges/miggy.jpg', import.meta.url).href
 
 const speakerGuests: GuestProfile[] = [
   {
@@ -191,13 +198,66 @@ const mentorGuests: GuestProfile[] = [
   },
 ]
 
+const judgeGuests: GuestProfile[] = [
+  {
+    name: 'Christopher Carlos',
+    role: 'Education and Opportunity Access Judge',
+    company: 'Systems Analyst, Omni Channel Solutions',
+    topic: 'Education & Opportunity Access',
+    blurb:
+      'Christopher Carlos serves as a Systems Analyst at Omni Channel Solutions, where he designs, develops, and maintains secure, scalable systems for internal operations and client-facing platforms. From his beginnings as an IT intern, he has grown into a key technology team member contributing to system efficiency, reliability, and innovation.',
+    tags: ['Systems analysis', 'Secure platforms', 'Operations'],
+    image: christopherCarlos,
+  },
+  {
+    name: 'Atty. Shenna Sunico',
+    role: 'Education and Opportunity Access Judge',
+    company: 'Chief of Staff, DICT ICT Industry Development',
+    topic: 'Education & Opportunity Access',
+    blurb:
+      'Atty. Shenna Sunico is a legal, policy, and governance professional with experience across public sector leadership, public international law, legal research, and technology regulation. She serves as Chief of Staff of the Office of the Undersecretary for ICT Industry Development at DICT, where she works on ICT policy, AI, IoT, data governance, startups, and legislative development.',
+    tags: ['ICT policy', 'Technology law', 'Governance'],
+    image: shennaSunico,
+  },
+  {
+    name: 'Michael Peduche',
+    role: 'Health and Well-being Access Judge',
+    company: 'Infotech and Data Protection Officer, Omni Channel Solutions',
+    topic: 'Health & Well-being Access',
+    blurb:
+      'Michael Peduche is the Infotech and Data Protection Officer at Omni Channel Solutions, with over a decade of experience in technology, data management, and information security. He focuses on protecting critical systems, sensitive data, and reliable IT infrastructure.',
+    tags: ['Data protection', 'Information security', 'IT infrastructure'],
+    image: michaelPeduche,
+  },
+  {
+    name: 'Raf Rañin',
+    role: 'Governance, Trust, and Livelihoods Judge',
+    company: 'Project Evaluation Officer, Department of Transportation',
+    topic: 'Governance, Trust & Livelihoods',
+    blurb:
+      'Raf Rañin is a Business Economics graduate from Pamantasan ng Lungsod ng Maynila and a Project Evaluation Officer at the Department of Transportation. His work centers on community support, livelihood programs, human rights research, and youth-led advocacy.',
+    tags: ['Livelihood programs', 'Human rights', 'Youth leadership'],
+    image: rafsanjaniRanin,
+  },
+  {
+    name: 'Juan Miguel Mendoza',
+    role: 'Governance, Trust, and Livelihoods Judge',
+    company: 'Senior Software Engineer, Globe Telecom',
+    topic: 'Governance, Trust & Livelihoods',
+    blurb:
+      'Miggy Mendoza is a Manila-based Senior Software Engineer with 6+ years architecting scalable web and mobile systems across telecom, fintech, and SaaS. He has delivered event-driven platforms, large-scale APIs, and cloud-native systems, while also founding GDSC PLM, coaching at KadaKareer, and advising startups and community initiatives.',
+    tags: ['Cloud engineering', 'Distributed systems', 'Tech for good'],
+    image: juanMiguelMendoza,
+  },
+]
+
 const comingSoonGuests: GuestProfile[] = [
   {
     name: 'Lineup to Be Announced',
     role: 'Final confirmations in progress',
     company: 'More guest details coming soon',
     blurb:
-      'Speaker and mentor profiles are already loaded into this section. Judge and additional guest details can be added as soon as the next confirmed files are ready.',
+      'Speaker, mentor, and judge profiles are already loaded into this section. Additional guest details can be added as soon as the next confirmed files are ready.',
     tags: ['Coming soon', 'Awaiting confirmation'],
     placeholderLabel: 'TBA',
   },
@@ -229,10 +289,10 @@ const guestGroups: GuestGroup[] = [
     label: 'Judges',
     accent: '#DFAD57',
     buttonText: '#1A1208',
-    eyebrow: 'Evaluation lineup still being finalized',
+    eyebrow: 'Confirmed evaluators for the final project showcase',
     description:
-      'Speaker and mentor data is already live. Judge details can drop into this track as soon as the confirmed lineup and source files are available.',
-    guests: comingSoonGuests,
+      'Confirmed judges bring experience across systems analysis, technology law, data protection, public service, and scalable software engineering.',
+    guests: judgeGuests,
   },
   {
     id: 'valuable-guests',
@@ -438,12 +498,10 @@ export default function Guests() {
 
               <div className="w-full max-w-4xl">
                 <article
-                  className="relative flex flex-col overflow-hidden rounded-[34px] border bg-[#1a1208] p-6 text-white shadow-[0_36px_80px_rgba(26,15,0,0.26)] sm:p-8 md:p-10"
+                  className="relative flex min-h-0 flex-col overflow-hidden rounded-[34px] border bg-[#1a1208] p-5 text-white shadow-[0_36px_80px_rgba(26,15,0,0.26)] sm:p-8 md:p-10 lg:min-h-[600px] lg:max-h-[600px]"
                   style={{
                     borderColor: `${activeGroup.accent}55`,
                     boxShadow: `0 36px 80px ${activeGroup.accent}22`,
-                    minHeight: '600px',
-                    maxHeight: '600px',
                   }}
                 >
                   <div
@@ -483,9 +541,9 @@ export default function Guests() {
                         }
                       }
                     `}</style>
-                    <div className="flex items-center justify-between gap-3 mb-6">
+                    <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
                       <span
-                        className="rounded-full px-4 py-2 text-[0.7rem] font-bold uppercase tracking-[0.2em]"
+                        className="max-w-full rounded-full px-4 py-2 text-center text-[0.62rem] font-bold uppercase leading-snug tracking-[0.14em] sm:text-[0.7rem] sm:tracking-[0.2em]"
                         style={{
                           backgroundColor: `${activeGroup.accent}22`,
                           border: `1px solid ${activeGroup.accent}44`,
@@ -494,7 +552,7 @@ export default function Guests() {
                       >
                         {currentGuest.topic || activeGroup.label}
                       </span>
-                      <span className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-white/55">
+                      <span className="max-w-full rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-center text-[0.62rem] font-semibold uppercase leading-snug tracking-[0.14em] text-white/55 sm:text-[0.7rem] sm:tracking-[0.2em]">
                         Featured
                       </span>
                     </div>
@@ -529,14 +587,14 @@ export default function Guests() {
                         </div>
 
                         <div className="mt-6 flex w-full flex-col items-center gap-3 lg:items-start">
-                          <h4 className="text-[2rem] font-bold leading-[1.15] text-brand-cream sm:text-[2.25rem]">
+                          <h4 className="max-w-full break-words text-[1.8rem] font-bold leading-[1.15] text-brand-cream sm:text-[2.25rem]">
                             {currentGuest.name}
                           </h4>
-                          <p className="text-base leading-[1.4] text-brand-cream/65">
+                          <p className="max-w-full break-words text-sm leading-[1.4] text-brand-cream/65 sm:text-base">
                             {currentGuest.company}
                           </p>
                           <p
-                            className="text-sm leading-[1.3] font-semibold uppercase tracking-[0.15em]"
+                            className="max-w-full break-words text-center text-[0.78rem] font-semibold uppercase leading-[1.35] tracking-[0.12em] sm:text-sm sm:tracking-[0.15em] lg:text-left"
                             style={{ color: activeGroup.accent }}
                           >
                             {currentGuest.role}
@@ -546,28 +604,22 @@ export default function Guests() {
 
                       {/* Right side - Description and tags */}
                       <div className="flex flex-col gap-6">
-                        <div className="flex flex-col rounded-[26px] border border-white/10 bg-white/[0.05] p-6 sm:p-8" style={{ minHeight: '280px', maxHeight: '280px', overflow: 'hidden' }}>
+                        <div className="flex min-h-[13rem] max-h-[15rem] flex-col overflow-y-auto rounded-[26px] border border-white/10 bg-white/[0.05] p-5 sm:p-8 lg:min-h-[280px] lg:max-h-[280px]">
                           <span className="text-[0.75rem] font-bold uppercase tracking-[0.22em] text-brand-gold mb-4">
                             About
                           </span>
                           <p 
-                            className="text-[0.85rem] leading-[1.55] text-white/[0.82]"
-                            style={{
-                              display: '-webkit-box',
-                              WebkitLineClamp: 11,
-                              WebkitBoxOrient: 'vertical',
-                              overflow: 'hidden',
-                            }}
+                            className="text-[0.82rem] leading-[1.55] text-white/[0.82] sm:text-[0.85rem]"
                           >
                             {currentGuest.blurb}
                           </p>
                         </div>
 
-                        <div className="flex flex-wrap gap-2.5" style={{ minHeight: '80px', maxHeight: '80px', overflow: 'hidden' }}>
+                        <div className="flex min-h-[4.5rem] flex-wrap content-start gap-2 lg:min-h-[72px]">
                           {currentGuest.tags.map((tag) => (
                             <span
                               key={`${currentGuest.name}-${tag}`}
-                              className="rounded-full border border-white/10 bg-white/[0.05] px-4 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-white/55"
+                              className="max-w-full rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-[0.58rem] font-semibold uppercase leading-tight tracking-[0.1em] text-white/55 sm:text-[0.64rem] sm:tracking-[0.14em]"
                               style={{ height: 'fit-content' }}
                             >
                               {tag}
