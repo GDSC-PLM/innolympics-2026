@@ -26,7 +26,7 @@ const days = [
   },
   {
     day: 'Day 2: Submissions, Pitching, & Finals',
-    date: 'April 26, 2026 · 8:30 AM – 5:00 PM',
+    date: 'April 26, 2026',
     accentColor: '#DA5B3C', // brand-coral
     events: [
       { time: '12:00 AM – 7:00 AM', title: 'Continue Hacking (Overnight)', type: 'program' },
