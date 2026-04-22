@@ -94,7 +94,7 @@ export default function Schedule() {
           <h2 className="text-4xl md:text-5xl font-bold text-[#1a0f00]">
             Event <span className="text-brand-coral">Schedule</span>
           </h2>
-          <p className="text-[#1a0f00]/50 mt-3 text-sm">April 19–20, 2026 · Community + Technical Workshops</p>
+          <p className="text-[#1a0f00]/50 mt-3 text-sm">April 25–26, 2026 · Innolympics Main Event</p>
         </div>
 
         {/* Two-column day layout */}
