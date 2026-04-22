@@ -10,7 +10,7 @@ import kmcLogo from '../raw-assets/sponsors/KMC-Updated-Logo-2026-Black.png'
 import manusLogo from '../raw-assets/sponsors/manus.png'
 import omniLogo from '../raw-assets/sponsors/Omni_Black_WithTitle.png'
 import mentalCoffeeLogo from '../raw-assets/sponsors/The Mental Coffee - Logo.jpg'
-import whitecloakLogo from '../raw-assets/sponsors/WHITECLOAK LOGO.png'
+
 
 const homeRoomLogo = new URL('../raw-assets/sponsors/Copy of Logo (BLUE).JPG', import.meta.url)
   .href
@@ -186,25 +186,6 @@ const showcases: Showcase[] = [
             name: 'KMC Solutions',
             summary:
               'KMC Solutions builds offshore global teams and flexible workspaces across the Philippines and Colombia, and serves as the official venue partner for the event.',
-            background: 'rgba(255,255,255,0.98)',
-          },
-        ],
-      },
-      {
-        id: 'event-supporter',
-        label: 'Event Supporter',
-        description:
-          'Supplemental brand backing grouped under the Vibrant Yellow Partner lane in the sponsor list.',
-        footnote: 'Vibrant Yellow Partner',
-        accent: '#DFAD57',
-        ink: '#1A1208',
-        artwork: [
-          {
-            src: whitecloakLogo,
-            alt: 'White Cloak Technologies logo',
-            name: 'White Cloak Technologies',
-            summary:
-              'White Cloak Technologies is confirmed as an Event Supporter under the Vibrant Yellow Partner tier for InnOlympics 2026.',
             background: 'rgba(255,255,255,0.98)',
           },
         ],
