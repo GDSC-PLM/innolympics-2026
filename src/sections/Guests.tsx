@@ -42,8 +42,6 @@ const rafsanjaniRanin = new URL('../raw-assets/judges/Rafsanjani Rañin_Photo-GD
   .href
 const juanMiguelMendoza = new URL('../raw-assets/judges/miggy.jpg', import.meta.url).href
 
-
-
 const mentorGuests: GuestProfile[] = [
   {
     name: 'Drandreb Justiniane',
@@ -331,7 +329,7 @@ export default function Guests() {
             Guest Lineup
           </span>
           <h2 className="mt-4 text-4xl font-bold leading-tight text-[#1a0f00] md:text-5xl">
-            Speakers, Mentors & Judges
+            Mentors & Judges
           </h2>
         </div>
 

@@ -343,7 +343,7 @@ export default function Partners() {
                 </span>
 
                 <h2 className="mt-5 max-w-4xl text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-                  Partners and Sponsors
+                  Partners, Sponsors, and Concessionaires
                 </h2>
               </div>
             </div>
