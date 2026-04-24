@@ -1,8 +1,6 @@
 import manus from '../partners/manus_light.png'
 import notion from '../partners/notion-logo-block-sticker.png'
 import omni from '../partners/Omni_White_Icon 1.png'
-import cont from '../partners/contributor-long.svg'
-import whitecloak from '../partners/whitecloak_wh.png'
 import hr from '../partners/homeroom.png'
 import kmc from '../partners/kmc.png'
 
@@ -36,7 +34,7 @@ export default function Footer() {
     >
       {/* Footer + Registration CTA */}
       {/* content wrapper */}
-      <div className="mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-4 grid-rows-2 gap-x-3 gap-y-10 md:gap-y-6 px-6 md:px-12">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 md:grid-cols-3 grid-rows-2 gap-x-3 gap-y-10 md:gap-y-6 px-6 md:px-12">
         {/* Presented By - Change Notion "hidden" status if incldued */}
         <div className="flex flex-col items-center">
           <h6 className="mb-4 inline-flex rounded-full border border-brand-sand bg-brand-sand/8 px-4 py-1.5 text-center text-xs text-brand-sand backdrop-blur-[2px] md:mb-7 md:text-sm">
@@ -56,17 +54,6 @@ export default function Footer() {
           </h6>
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <img src={hr} alt="small logo" className="w-[25%]" />
-          </div>
-        </div>
-
-        {/* Contributor */}
-        <div className="flex flex-col items-center">
-          <h6 className="mb-4 inline-flex rounded-full border border-brand-sand bg-brand-sand/8 px-4 py-1.5 text-center text-xs text-brand-sand backdrop-blur-[2px] md:mb-7 md:text-sm">
-            Contributor
-          </h6>
-          <div className="flex items-center justify-center gap-4 flex-wrap">
-            <img src={cont} alt="long logo" className="w-[50%] hidden" />
-            <img src={whitecloak} alt="long logo" className="w-[70%]" />
           </div>
         </div>
 
