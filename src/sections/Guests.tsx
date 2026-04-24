@@ -24,7 +24,6 @@ type GuestGroup = {
   guests: GuestProfile[]
 }
 
-const dio = new URL('../raw-assets/speakers/dio.png', import.meta.url).href
 const dumlao = new URL('../raw-assets/speakers/dumlao.png', import.meta.url).href
 const francisco = new URL('../raw-assets/speakers/francisco.jpg', import.meta.url).href
 const justiniane = new URL('../raw-assets/speakers/justiniane. [Photo]', import.meta.url).href
@@ -34,6 +33,7 @@ const hulleza = new URL('../raw-assets/mentors/hulleza.jpg', import.meta.url).hr
 const madero = new URL('../raw-assets/mentors/madero.png', import.meta.url).href
 const tolentino = new URL('../raw-assets/mentors/tolentino.png', import.meta.url).href
 const williams = new URL('../raw-assets/mentors/williams.jpeg', import.meta.url).href
+const geraldino = new URL('../raw-assets/mentors/geraldino.jpg', import.meta.url).href
 const shennaSunico = new URL('../raw-assets/judges/1 Atty Shenna Sunico.jpg', import.meta.url)
   .href
 const christopherCarlos = new URL('../raw-assets/judges/Carlos.png', import.meta.url).href
@@ -42,68 +42,7 @@ const rafsanjaniRanin = new URL('../raw-assets/judges/Rafsanjani Rañin_Photo-GD
   .href
 const juanMiguelMendoza = new URL('../raw-assets/judges/miggy.jpg', import.meta.url).href
 
-const speakerGuests: GuestProfile[] = [
-  {
-    name: 'Joshua Bumanlag',
-    role: 'Foundations of Innovation Speaker',
-    company: 'iOS Engineer, ING Hubs Philippines',
-    topic: 'Foundations of Innovation',
-    blurb:
-      'Joshua Bumanlag is an iOS Engineer at ING Hubs Philippines and a former Google Developer Student Clubs Lead and Notion Campus Leader. He has mentored student developer teams in building strong cross-platform apps and brings practical insight on strategy, execution, and team dynamics.',
-    tags: ['Strategy', 'Team dynamics', 'Mobile development'],
-    image: bumanlag,
-  },
-  {
-    name: 'Ryem Jian Dumlao',
-    role: 'Design for Impact Speaker',
-    company: 'UX Manager, Virtual Studios PH',
-    topic: 'Design for Impact',
-    blurb:
-      'Ryem Jian Dumlao is a User Experience Manager at Virtual Studios PH who leads cross-functional teams in building user-centered digital products. Her work spans UX research, product strategy, and design systems, and she actively shares insights with design and developer communities.',
-    tags: ['UI/UX', 'Rapid prototyping', 'Design systems'],
-    image: dumlao,
-  },
-  {
-    name: 'Louis Francisco',
-    role: 'Accelerated Development Speaker',
-    company: 'Senior Dev Fresh Grad, RCBC',
-    topic: 'Accelerated Development',
-    blurb:
-      'Louis Francisco builds apps across fintech, proptech, e-commerce, and digital media. A former hackathon winner from PLM, he enjoys mentoring builders and helping teams turn strong ideas into polished, working products.',
-    tags: ['AI builds', 'Flutter', 'Rapid execution'],
-    image: francisco,
-  },
-  {
-    name: 'Enrica Dio',
-    role: 'Pitch Crafting Speaker',
-    company: 'Technology Strategist and Startup Co-founder',
-    topic: 'Pitch Crafting',
-    blurb:
-      'Enrica Dio is a technology strategist and startup co-founder whose work spans software development, business strategy, and innovation communities. She has led AWS Cloud Club initiatives, contributed cybersecurity research, and regularly mentors students on shaping viable products and sharper pitches.',
-    tags: ['Pitching', 'Startup strategy', 'Innovation'],
-    image: dio,
-  },
-  {
-    name: 'Drandreb Justiniane',
-    role: 'Bridging the Divide Speaker',
-    company: 'Department of Education',
-    topic: 'Bridging the Divide',
-    blurb:
-      'Drandreb Justiniane is a registered psychometrician and magna cum laude psychology graduate whose work centers on mental health, education, and human development. Through public service, behavioral intervention work, and community speaking, he champions resilience, inclusive growth, and access to opportunity.',
-    tags: ['Education access', 'Mental health', 'Inclusive growth'],
-    image: justiniane,
-  },
-  {
-    name: 'Jose Mari A. Hulleza',
-    role: 'Systemic Wellness Speaker',
-    company: 'Registered Psychologist and Faculty Member',
-    topic: 'Systemic Wellness',
-    blurb:
-      'Jose Mari A. Hulleza is a registered psychologist and psychometrician who teaches across multiple institutions and leads mental health advocacy in communities and workplaces. His work focuses on mental health literacy, inclusive care, and making well-being support more accessible to Filipinos.',
-    tags: ['Wellness', 'Mental health literacy', 'Community care'],
-    image: hulleza,
-  },
-]
+
 
 const mentorGuests: GuestProfile[] = [
   {
@@ -167,6 +106,16 @@ const mentorGuests: GuestProfile[] = [
     image: himoldang,
   },
   {
+    name: 'John Carlos Geraldino',
+    role: 'Health & Well-being Access Mentor',
+    company: 'School Guidance Associate, The National Teachers College - Manila',
+    topic: 'Health & Well-being Access',
+    blurb:
+      'John Carlos Geraldino is a dedicated professional with a strong background in health and well-being access. He brings valuable experience in promoting mental health awareness and supporting inclusive initiatives.',
+    tags: ['Mentorship', 'Inclusive initiatives', 'Mental health awareness'],
+    image: geraldino,
+  },
+  {
     name: 'Ryem Jian Dumlao',
     role: 'Governance, Trust, and Livelihoods Mentor',
     company: 'UX Manager, Virtual Studios PH',
@@ -196,6 +145,7 @@ const mentorGuests: GuestProfile[] = [
     tags: ['Mentorship', 'Cross-platform apps', 'Team leadership'],
     image: bumanlag,
   },
+  
 ]
 
 const judgeGuests: GuestProfile[] = [
@@ -251,29 +201,8 @@ const judgeGuests: GuestProfile[] = [
   },
 ]
 
-const comingSoonGuests: GuestProfile[] = [
-  {
-    name: 'Lineup to Be Announced',
-    role: 'Final confirmations in progress',
-    company: 'More guest details coming soon',
-    blurb:
-      'Speaker, mentor, and judge profiles are already loaded into this section. Additional guest details can be added as soon as the next confirmed files are ready.',
-    tags: ['Coming soon', 'Awaiting confirmation'],
-    placeholderLabel: 'TBA',
-  },
-]
 
 const guestGroups: GuestGroup[] = [
-  {
-    id: 'speakers',
-    label: 'Speakers',
-    accent: '#DA5B3C',
-    buttonText: '#FFF8DB',
-    eyebrow: 'Featured talks and workshop sessions',
-    description:
-      'Confirmed speakers now cover innovation strategy, user-centered design, rapid development, pitching, education access, and systemic wellness.',
-    guests: speakerGuests,
-  },
   {
     id: 'mentors',
     label: 'Mentors',
@@ -293,16 +222,6 @@ const guestGroups: GuestGroup[] = [
     description:
       'Confirmed judges bring experience across systems analysis, technology law, data protection, public service, and scalable software engineering.',
     guests: judgeGuests,
-  },
-  {
-    id: 'valuable-guests',
-    label: 'Other Valuable Guests',
-    accent: '#FFD65D',
-    buttonText: '#1A1208',
-    eyebrow: 'Additional guests can be added next',
-    description:
-      'This space is reserved for confirmed community partners, special guests, and additional contributors once their details are finalized.',
-    guests: comingSoonGuests,
   },
 ]
 
