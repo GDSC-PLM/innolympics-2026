@@ -33,6 +33,7 @@ const hulleza = new URL('../raw-assets/mentors/hulleza.jpg', import.meta.url).hr
 const madero = new URL('../raw-assets/mentors/madero.png', import.meta.url).href
 const tolentino = new URL('../raw-assets/mentors/tolentino.png', import.meta.url).href
 const williams = new URL('../raw-assets/mentors/williams.jpeg', import.meta.url).href
+const geraldino = new URL('../raw-assets/mentors/geraldino.jpg', import.meta.url).href
 const shennaSunico = new URL('../raw-assets/judges/1 Atty Shenna Sunico.jpg', import.meta.url)
   .href
 const christopherCarlos = new URL('../raw-assets/judges/Carlos.png', import.meta.url).href
@@ -103,6 +104,16 @@ const mentorGuests: GuestProfile[] = [
     image: himoldang,
   },
   {
+    name: 'John Carlos Geraldino',
+    role: 'Health & Well-being Access Mentor',
+    company: 'School Guidance Associate, The National Teachers College - Manila',
+    topic: 'Health & Well-being Access',
+    blurb:
+      'John Carlos Geraldino is a dedicated professional with a strong background in health and well-being access. He brings valuable experience in promoting mental health awareness and supporting inclusive initiatives.',
+    tags: ['Mentorship', 'Inclusive initiatives', 'Mental health awareness'],
+    image: geraldino,
+  },
+  {
     name: 'Ryem Jian Dumlao',
     role: 'Governance, Trust, and Livelihoods Mentor',
     company: 'UX Manager, Virtual Studios PH',
@@ -132,6 +143,7 @@ const mentorGuests: GuestProfile[] = [
     tags: ['Mentorship', 'Cross-platform apps', 'Team leadership'],
     image: bumanlag,
   },
+  
 ]
 
 const judgeGuests: GuestProfile[] = [
@@ -186,6 +198,7 @@ const judgeGuests: GuestProfile[] = [
     image: juanMiguelMendoza,
   },
 ]
+
 
 const guestGroups: GuestGroup[] = [
   {
